@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4307 Whitsett Ave — LAAA Team BOV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; color: #111; background: #fff; }
+    body { font-family: 'Montserrat', Arial, sans-serif; color: #e8edf2; background: #0d2137; }
 
     /* ── HERO ── */
     .hero {
       position: relative;
       height: 520px;
       overflow: hidden;
-      background: #1a1a1a;
+      background: #111111;
     }
     .hero img {
       width: 100%;
@@ -35,7 +36,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: #ffff00;
+      color: #c9a84c;
       margin-bottom: 10px;
       font-weight: 700;
     }
@@ -53,7 +54,7 @@
     }
     .hero-price {
       display: inline-block;
-      background: #ffff00;
+      background: #c9a84c;
       color: #111;
       font-size: 28px;
       font-weight: 700;
@@ -63,7 +64,7 @@
 
     /* ── TOP NAV BAR ── */
     .topbar {
-      background: #2c2c2c;
+      background: #1B3A5C;
       padding: 0 60px;
       display: flex;
       align-items: center;
@@ -88,37 +89,39 @@
       letter-spacing: 0.5px;
       transition: color 0.15s;
     }
-    .topbar nav a:hover { color: #ffff00; }
+    .topbar nav a:hover { color: #c9a84c; }
 
     /* ── KEY METRICS BAR ── */
     .metrics-bar {
-      background: #f5f5f5;
-      border-bottom: 1px solid #ddd;
+      background: #0f2030;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       display: flex;
       padding: 0 60px;
     }
     .metric {
       flex: 1;
       padding: 20px 0;
-      border-right: 1px solid #ddd;
+      border-right: 1px solid rgba(255,255,255,0.1);
       text-align: center;
     }
     .metric:last-child { border-right: none; }
     .metric .m-val {
       font-size: 22px;
       font-weight: 700;
-      color: #111;
+      color: #e8edf2;
     }
     .metric .m-lbl {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.7px;
-      color: #888;
+      color: #6a8298;
       margin-top: 4px;
     }
     .metric.bov-metric {
-      background: #ffff00;
+      background: #c9a84c;
     }
+    .metric.bov-metric .m-val { color: #111; }
+    .metric.bov-metric .m-lbl { color: #111; }
 
     /* ── MAIN BODY ── */
     .main { max-width: 1060px; margin: 0 auto; padding: 56px 60px; }
@@ -126,12 +129,12 @@
     /* ── SECTION CARDS ── */
     .section-intro {
       font-size: 13px;
-      color: #666;
+      color: #7d96aa;
       line-height: 1.8;
       margin-bottom: 40px;
       max-width: 680px;
     }
-    .section-intro strong { color: #111; }
+    .section-intro strong { color: #e8edf2; }
 
     .cards-grid {
       display: grid;
@@ -144,14 +147,15 @@
       display: block;
       text-decoration: none;
       color: inherit;
-      border: 1px solid #ddd;
+      background: #122840;
+      border: 1px solid rgba(255,255,255,0.12);
       transition: box-shadow 0.2s, border-color 0.2s;
     }
     .card-link:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-      border-color: #bbb;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.25);
     }
-    .card-link:hover .card-arrow { color: #ffff00; }
+    .card-link:hover .card-arrow { color: #c9a84c; }
 
     .card-inner { padding: 28px 28px 22px; }
     .card-icon {
@@ -164,19 +168,19 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      color: #aaa;
+      color: #6a8298;
       margin-bottom: 6px;
     }
     .card-title {
       font-size: 18px;
       font-weight: 700;
-      color: #111;
+      color: #e8edf2;
       margin-bottom: 10px;
       line-height: 1.2;
     }
     .card-desc {
       font-size: 13px;
-      color: #666;
+      color: #94a8bc;
       line-height: 1.7;
       margin-bottom: 18px;
     }
@@ -184,23 +188,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid #eee;
+      border-top: 1px solid rgba(255,255,255,0.12);
       padding-top: 14px;
     }
     .card-tags span {
       display: inline-block;
-      background: #f0f0f0;
+      background: #0d2137;
       font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #555;
+      color: #94a8bc;
       padding: 3px 8px;
       margin-right: 4px;
     }
     .card-arrow {
       font-size: 18px;
-      color: #ccc;
+      color: #6a8298;
       font-weight: 700;
       transition: color 0.2s;
     }
@@ -208,26 +212,26 @@
     /* BOV card — full width */
     .card-link.featured {
       grid-column: 1 / -1;
-      background: #2c2c2c;
+      background: #1B3A5C;
       color: #fff;
-      border-color: #2c2c2c;
+      border-color: #1B3A5C;
     }
     .card-link.featured .card-inner { display: flex; gap: 40px; align-items: center; }
     .card-link.featured .card-left { flex: 1.2; }
     .card-link.featured .card-right { flex: 1; }
-    .card-link.featured .card-num { color: #888; }
+    .card-link.featured .card-num { color: #6a8298; }
     .card-link.featured .card-title { font-size: 24px; color: #fff; }
-    .card-link.featured .card-desc { color: #aaa; }
-    .card-link.featured .card-footer { border-top-color: #444; }
-    .card-link.featured .card-tags span { background: #3a3a3a; color: #ccc; }
-    .card-link.featured .card-arrow { color: #888; }
-    .card-link.featured:hover .card-arrow { color: #ffff00; }
-    .featured-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #444; }
-    .featured-stat { padding: 14px 16px; border-right: 1px solid #444; border-bottom: 1px solid #444; }
+    .card-link.featured .card-desc { color: #94a8bc; }
+    .card-link.featured .card-footer { border-top-color: rgba(255,255,255,0.12); }
+    .card-link.featured .card-tags span { background: rgba(255,255,255,0.07); color: #94a8bc; }
+    .card-link.featured .card-arrow { color: #6a8298; }
+    .card-link.featured:hover .card-arrow { color: #c9a84c; }
+    .featured-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(255,255,255,0.12); }
+    .featured-stat { padding: 14px 16px; border-right: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12); }
     .featured-stat:nth-child(even) { border-right: none; }
     .featured-stat:nth-last-child(-n+2) { border-bottom: none; }
-    .featured-stat .fs-val { font-size: 20px; font-weight: 700; color: #ffff00; }
-    .featured-stat .fs-lbl { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .featured-stat .fs-val { font-size: 20px; font-weight: 700; color: #c9a84c; }
+    .featured-stat .fs-lbl { font-size: 10px; color: #6a8298; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
     /* ── PROPERTY QUICK FACTS ── */
     .facts-section { margin-bottom: 48px; }
@@ -236,8 +240,8 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      color: #2c2c2c;
-      border-bottom: 2px solid #2c2c2c;
+      color: #C9A84C;
+      border-bottom: 2px solid #C9A84C;
       padding-bottom: 6px;
       display: inline-block;
       margin-bottom: 18px;
@@ -246,21 +250,21 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
-      border: 1px solid #ddd;
+      border: 1px solid rgba(255,255,255,0.12);
     }
     .fact-cell {
       padding: 14px 16px;
-      border-right: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .fact-cell:nth-child(4n) { border-right: none; }
     .fact-cell:nth-last-child(-n+4) { border-bottom: none; }
-    .fact-cell .f-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: #999; margin-bottom: 4px; }
-    .fact-cell .f-val { font-size: 14px; font-weight: 600; }
+    .fact-cell .f-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: #6a8298; margin-bottom: 4px; }
+    .fact-cell .f-val { font-size: 14px; font-weight: 600; color: #e8edf2; }
 
     /* ── CONTACT / FOOTER ── */
     .contact-bar {
-      background: #2c2c2c;
+      background: #1B3A5C;
       padding: 28px 60px;
       display: flex;
       justify-content: space-between;
@@ -270,10 +274,10 @@
     }
     .contact-bar .agent { color: #ccc; font-size: 12px; line-height: 1.9; }
     .contact-bar .agent strong { color: #fff; font-size: 13px; }
-    .contact-bar .divider-v { width: 1px; background: #444; align-self: stretch; }
+    .contact-bar .divider-v { width: 1px; background: rgba(255,255,255,0.12); align-self: stretch; }
     .footer-bottom {
-      background: #1a1a1a;
-      color: #666;
+      background: #0a1828;
+      color: #94a8bc;
       font-size: 10px;
       padding: 10px 60px;
       text-align: center;
@@ -298,9 +302,9 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img src="../Photos/PrimaryPhoto (3).jpg" alt="4307 Whitsett Ave, Studio City">
+    <img src="hero.webp" alt="4307 Whitsett Ave, Studio City">
     <div class="hero-content">
-      <div class="hero-tag">Broker Opinion of Value &nbsp;|&nbsp; Prepared for Christine Luu</div>
+      <div class="hero-tag">Exclusively Prepared for Christine Luu</div>
       <h1>4307 Whitsett Ave<br>Studio City, CA 91604</h1>
       <div class="hero-sub">16 Units &nbsp;&bull;&nbsp; Built 1985 &nbsp;&bull;&nbsp; Not RSO &nbsp;&bull;&nbsp; 100% Occupied</div>
       <div class="hero-price">$6,700,000</div>
@@ -329,17 +333,13 @@
       <div class="m-val">12.12×</div>
       <div class="m-lbl">GRM</div>
     </div>
-    <div class="metric">
-      <div class="m-val">$4,106,380</div>
-      <div class="m-lbl">Est. Cash Proceeds</div>
-    </div>
   </div>
 
   <!-- MAIN -->
   <div class="main">
 
     <p class="section-intro">
-      Christine, this site consolidates all of our analysis for 4307 Whitsett Ave — from the full property overview and sale comparables, to your estimated net proceeds, a 1031 exchange comparison, and our team's complete track record in your submarket. Each section is linked below. <strong>Start with the BOV overview</strong> or jump directly to the analysis most relevant to your decision.
+      Select any section below to open the full analysis.
     </p>
 
     <!-- CARDS -->

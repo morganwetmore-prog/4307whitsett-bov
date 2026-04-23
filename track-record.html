@@ -3,91 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <title>LAAA Team – Track Record</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; font-size: 14px; color: #111; background: #fff; padding: 48px 56px; max-width: 900px; margin: 0 auto; }
+    body { font-family: 'Montserrat', Arial, sans-serif; font-size: 14px; color: #e8edf2; background: #0d2137; padding: 48px 56px; max-width: 900px; margin: 0 auto; }
 
-    .topbar { background: #2c2c2c; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; margin: -48px -56px 48px; }
+    .topbar { background: #1B3A5C; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; margin: -48px -56px 48px; }
     .topbar .brand { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
     .topbar nav a { color: #ccc; text-decoration: none; font-size: 12px; margin-left: 22px; letter-spacing: 0.5px; transition: color 0.15s; }
-    .topbar nav a:hover { color: #ffff00; }
+    .topbar nav a:hover { color: #c9a84c; }
     .page-title { margin-bottom: 28px; }
     .page-title h1 { font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-    .page-title h2 { font-size: 13px; font-weight: 400; color: #555; margin-top: 6px; }
-    .page-title .divider { border-bottom: 3px solid #111; margin-top: 12px; padding-bottom: 10px; }
+    .page-title h2 { font-size: 13px; font-weight: 400; color: #94a8bc; margin-top: 6px; }
+    .page-title .divider { border-bottom: 3px solid rgba(255,255,255,0.3); margin-top: 12px; padding-bottom: 10px; }
 
     /* Big stats row */
-    .big-stats { display: flex; gap: 0; margin: 24px 0; border: 1px solid #ddd; }
-    .big-stat { flex: 1; padding: 18px 14px; text-align: center; border-right: 1px solid #ddd; }
+    .big-stats { display: flex; gap: 0; margin: 24px 0; border: 1px solid rgba(255,255,255,0.12); }
+    .big-stat { flex: 1; padding: 18px 14px; text-align: center; border-right: 1px solid rgba(255,255,255,0.12); }
     .big-stat:last-child { border-right: none; }
-    .big-stat .num { font-size: 26px; font-weight: 700; color: #111; }
-    .big-stat .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #777; margin-top: 4px; line-height: 1.4; }
-    .big-stat.highlight { background: #2c2c2c; }
-    .big-stat.highlight .num { color: #ffff00; }
-    .big-stat.highlight .lbl { color: #aaa; }
+    .big-stat .num { font-size: 26px; font-weight: 700; color: #e8edf2; }
+    .big-stat .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #6a8298; margin-top: 4px; line-height: 1.4; }
+    .big-stat.highlight { background: #1B3A5C; }
+    .big-stat.highlight .num { color: #c9a84c; }
+    .big-stat.highlight .lbl { color: #94a8bc; }
 
     /* CoStar badge */
-    .costar-badge { background: #2c2c2c; color: #fff; padding: 14px 20px; margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+    .costar-badge { background: #1B3A5C; color: #fff; padding: 14px 20px; margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
     .costar-badge .badge-text { font-size: 14px; font-weight: 700; }
     .costar-badge .badge-sub { font-size: 11px; color: #ccc; margin-top: 3px; }
     .costar-badge .badge-icon { font-size: 28px; }
 
     /* Section headers */
     .section-header { margin-top: 28px; margin-bottom: 14px; }
-    .section-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #2c2c2c; border-bottom: 2px solid #2c2c2c; padding-bottom: 6px; display: inline-block; }
+    .section-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #C9A84C; border-bottom: 2px solid #C9A84C; padding-bottom: 6px; display: inline-block; }
 
     /* SFV breakdown table */
     table.sfv-table { width: 100%; border-collapse: collapse; }
-    table.sfv-table thead tr { background: #2c2c2c; color: #fff; }
+    table.sfv-table thead tr { background: #1B3A5C; color: #fff; }
     table.sfv-table thead th { padding: 10px 12px; text-align: right; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; }
     table.sfv-table thead th:first-child { text-align: left; }
-    table.sfv-table tbody tr { border-bottom: 1px solid #e8e8e8; }
-    table.sfv-table tbody td { padding: 9px 12px; text-align: right; font-size: 13px; }
-    table.sfv-table tbody td:first-child { text-align: left; font-weight: 600; }
-    table.sfv-table tbody tr.total-row { background: #f5f5f5; font-weight: 700; }
-    table.sfv-table tbody tr.sfv-highlight { background: #ffff00; font-weight: 700; border-top: 2px solid #cca800; border-bottom: 2px solid #cca800; }
-    table.sfv-table tbody tr.subject-note td { background: #2c2c2c; color: #ccc; font-size: 11px; text-align: left; font-weight: 400; padding: 8px 12px; }
-    table.sfv-table tbody tr.subject-note td strong { color: #ffff00; }
+    table.sfv-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    table.sfv-table tbody td { padding: 9px 12px; text-align: right; font-size: 13px; color: #c8d4e0; }
+    table.sfv-table tbody td:first-child { text-align: left; font-weight: 600; color: #e8edf2; }
+    table.sfv-table tbody tr.total-row { background: #0f2030; font-weight: 700; }
+    table.sfv-table tbody tr.sfv-highlight { background: #c9a84c; font-weight: 700; border-top: 2px solid #a07828; border-bottom: 2px solid #a07828; }
+    table.sfv-table tbody tr.sfv-highlight td { color: #111; }
+    table.sfv-table tbody tr.subject-note td { background: #1B3A5C; color: #ccc; font-size: 11px; text-align: left; font-weight: 400; padding: 8px 12px; }
+    table.sfv-table tbody tr.subject-note td strong { color: #c9a84c; }
 
     /* Context box */
-    .context-box { margin-top: 16px; background: #f0f6ff; border-left: 3px solid #4477cc; padding: 12px 16px; font-size: 12px; color: #333; line-height: 1.8; }
+    .context-box { margin-top: 16px; background: #0d2440; border-left: 3px solid #4477cc; padding: 12px 16px; font-size: 12px; color: #94c4f0; line-height: 1.8; }
 
     /* Bio cards */
     .bio-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 14px; }
-    .bio-card { border: 1px solid #ddd; padding: 16px; background: #fafafa; }
-    .bio-card .bio-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .bio-card .bio-title { font-size: 11px; color: #555; margin-bottom: 10px; border-bottom: 1px solid #e0e0e0; padding-bottom: 8px; }
-    .bio-card .bio-awards { font-size: 11px; color: #333; line-height: 1.8; }
-    .bio-card .award-tag { display: inline-block; background: #ffff00; font-size: 10px; font-weight: 700; padding: 2px 6px; margin: 2px 2px 0 0; }
+    .bio-card { border: 1px solid rgba(255,255,255,0.12); padding: 16px; background: #122840; }
+    .bio-card .bio-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #e8edf2; }
+    .bio-card .bio-title { font-size: 11px; color: #94a8bc; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
+    .bio-card .bio-awards { font-size: 11px; color: #c8d4e0; line-height: 1.8; }
+    .bio-card .award-tag { display: inline-block; background: #C9A84C; color: #111; font-size: 10px; font-weight: 700; padding: 2px 6px; margin: 2px 2px 0 0; }
 
     /* Full transaction history */
-    .txn-wrap { margin-top: 14px; max-height: 640px; overflow-y: auto; border: 1px solid #ddd; }
+    .txn-wrap { margin-top: 14px; max-height: 640px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.12); }
     table.txn-table { width: 100%; border-collapse: collapse; }
     table.txn-table thead { position: sticky; top: 0; z-index: 1; }
-    table.txn-table thead tr { background: #2c2c2c; color: #fff; }
+    table.txn-table thead tr { background: #1B3A5C; color: #fff; }
     table.txn-table thead th { padding: 10px 10px; text-align: right; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
     table.txn-table thead th:first-child { text-align: left; }
     table.txn-table thead th:nth-child(2) { text-align: left; }
-    table.txn-table tbody tr { border-bottom: 1px solid #eee; }
-    table.txn-table tbody td { padding: 7px 10px; font-size: 12px; text-align: right; white-space: nowrap; }
-    table.txn-table tbody td:first-child { text-align: center; font-weight: 700; color: #888; }
+    table.txn-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    table.txn-table tbody td { padding: 7px 10px; font-size: 12px; text-align: right; white-space: nowrap; color: #c8d4e0; }
+    table.txn-table tbody td:first-child { text-align: center; font-weight: 700; color: #6a8298; }
     table.txn-table tbody td:nth-child(2) { text-align: left; }
-    table.txn-table tbody tr.sfv { background: #fffde6; }
-    table.txn-table tbody tr.sfv td:first-child { color: #cca800; }
-    table.txn-table tbody tr:hover { background: #f5f5f5; }
-    table.txn-table tbody tr.sfv:hover { background: #fff8cc; }
-    .txn-legend { margin-top: 8px; font-size: 11px; color: #666; }
-    .txn-legend span { display: inline-block; background: #fffde6; border: 1px solid #e0cc00; padding: 2px 8px; margin-right: 6px; font-weight: 600; }
+    table.txn-table tbody tr.sfv { background: #2a2010; }
+    table.txn-table tbody tr.sfv td:first-child { color: #a07828; }
+    table.txn-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+    table.txn-table tbody tr.sfv:hover { background: #332810; }
+    .txn-legend { margin-top: 8px; font-size: 11px; color: #7d96aa; }
+    .txn-legend span { display: inline-block; background: #2a2010; border: 1px solid #a07828; padding: 2px 8px; margin-right: 6px; font-weight: 600; color: #c8d4e0; }
 
     /* Closing statement */
-    .closing-statement { margin-top: 28px; background: #2c2c2c; color: #fff; padding: 20px 24px; }
-    .closing-statement h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #ffff00; }
+    .closing-statement { margin-top: 28px; background: #1B3A5C; color: #fff; padding: 20px 24px; }
+    .closing-statement h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #c9a84c; }
     .closing-statement p { font-size: 12px; color: #ccc; line-height: 1.8; }
 
     /* Footer */
-    .agents { margin-top: 28px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 10px; color: #555; line-height: 2.0; }
-    .agents .name { font-weight: 700; font-size: 11px; color: #111; }
-    .footer-bar { margin-top: 20px; background: #2c2c2c; color: #ccc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
+    .agents { margin-top: 28px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 10px; color: #94a8bc; line-height: 2.0; }
+    .agents .name { font-weight: 700; font-size: 11px; color: #e8edf2; }
+    .footer-bar { margin-top: 20px; background: #0a1828; color: #94a8bc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
   </style>
 </head>
 <body>
@@ -135,7 +137,7 @@
   <div class="section-header">
     <h3>San Fernando Valley Market Presence — Christine's Submarket</h3>
   </div>
-  <p style="font-size:12px; color:#666; margin-bottom:12px;">The SFV accounts for 203 of our 459 closed transactions — our deepest, most active submarket. Studio City sits in the highest-value corridor of the Valley. Our buyer database and owner relationships in this area are unmatched.</p>
+  <p style="font-size:12px; color:#7d96aa; margin-bottom:12px;">The SFV accounts for 203 of our 459 closed transactions — our deepest, most active submarket. Studio City sits in the highest-value corridor of the Valley. Our buyer database and owner relationships in this area are unmatched.</p>
 
   <table class="sfv-table">
     <thead>
@@ -204,7 +206,7 @@
   <div class="section-header" style="margin-top:32px;">
     <h3>Complete Transaction History — 459 Closed Deals Since 2013</h3>
   </div>
-  <p style="font-size:12px; color:#666; margin-bottom:10px;">Showing 50 most recent of 459 total transactions. All deal types: apartments, land, and NNN. Source: laaa.com</p>
+  <p style="font-size:12px; color:#7d96aa; margin-bottom:10px;">Showing 50 most recent of 459 total transactions. All deal types: apartments, land, and NNN. Source: laaa.com</p>
 
   <div class="txn-legend">
     <span>★ SFV</span> San Fernando Valley transaction
@@ -300,7 +302,7 @@
       </tbody>
     </table>
   </div>
-  <p style="font-size:11px; color:#999; margin-top:6px; font-style:italic;">Showing 63 of 459 transactions (50 most recent + Studio City, Encino, Toluca Lake &amp; Woodland Hills deals). Full history at laaa.com/track-record</p>
+  <p style="font-size:11px; color:#5c7080; margin-top:6px; font-style:italic;">Showing 63 of 459 transactions (50 most recent + Studio City, Encino, Toluca Lake &amp; Woodland Hills deals). Full history at laaa.com/track-record</p>
 
   <!-- Closing statement -->
   <div class="closing-statement">

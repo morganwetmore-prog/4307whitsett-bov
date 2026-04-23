@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Your Listing Includes — LAAA Team</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; font-size: 14px; color: #111; background: #fff; }
+    body { font-family: 'Montserrat', Arial, sans-serif; font-size: 14px; color: #e8edf2; background: #0d2137; }
 
     /* ── TOP NAV BAR ── */
     .topbar {
-      background: #2c2c2c;
+      background: #1B3A5C;
       padding: 0 60px;
       display: flex;
       align-items: center;
@@ -35,72 +36,72 @@
       letter-spacing: 0.5px;
       transition: color 0.15s;
     }
-    .topbar nav a:hover { color: #ffff00; }
-    .topbar nav a.active { color: #ffff00; }
+    .topbar nav a:hover { color: #c9a84c; }
+    .topbar nav a.active { color: #c9a84c; }
 
     /* ── PAGE BODY ── */
     .page-wrap { max-width: 860px; margin: 0 auto; padding: 48px 56px; }
 
     .page-title { margin-bottom: 28px; }
     .page-title h1 { font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-    .page-title h2 { font-size: 13px; font-weight: 400; color: #555; margin-top: 6px; }
-    .page-title .divider { border-bottom: 3px solid #111; margin-top: 12px; padding-bottom: 10px; }
+    .page-title h2 { font-size: 13px; font-weight: 400; color: #94a8bc; margin-top: 6px; }
+    .page-title .divider { border-bottom: 3px solid rgba(255,255,255,0.3); margin-top: 12px; padding-bottom: 10px; }
 
     /* Section headers */
     .section-header { margin-top: 32px; margin-bottom: 14px; }
-    .section-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #2c2c2c; border-bottom: 2px solid #2c2c2c; padding-bottom: 6px; display: inline-block; }
-    .section-header .section-num { font-size: 10px; color: #888; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .section-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #C9A84C; border-bottom: 2px solid #C9A84C; padding-bottom: 6px; display: inline-block; }
+    .section-header .section-num { font-size: 10px; color: #6a8298; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
 
     /* Big stats bar */
-    .big-stats { display: flex; gap: 0; margin: 14px 0; border: 1px solid #ddd; }
-    .big-stat { flex: 1; padding: 18px 14px; text-align: center; border-right: 1px solid #ddd; }
+    .big-stats { display: flex; gap: 0; margin: 14px 0; border: 1px solid rgba(255,255,255,0.12); }
+    .big-stat { flex: 1; padding: 18px 14px; text-align: center; border-right: 1px solid rgba(255,255,255,0.12); }
     .big-stat:last-child { border-right: none; }
-    .big-stat .num { font-size: 26px; font-weight: 700; color: #111; }
-    .big-stat .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #777; margin-top: 4px; line-height: 1.4; }
-    .big-stat.highlight { background: #2c2c2c; }
-    .big-stat.highlight .num { color: #ffff00; }
-    .big-stat.highlight .lbl { color: #aaa; }
+    .big-stat .num { font-size: 26px; font-weight: 700; color: #e8edf2; }
+    .big-stat .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #6a8298; margin-top: 4px; line-height: 1.4; }
+    .big-stat.highlight { background: #1B3A5C; }
+    .big-stat.highlight .num { color: #c9a84c; }
+    .big-stat.highlight .lbl { color: #94a8bc; }
 
     /* Marketing list */
     .marketing-list { list-style: none; margin-top: 10px; }
     .marketing-list li {
       padding: 9px 0;
-      border-bottom: 1px solid #e8e8e8;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
       font-size: 13px;
       padding-left: 18px;
       position: relative;
       line-height: 1.5;
-      color: #333;
+      color: #c8d4e0;
     }
-    .marketing-list li::before { content: "▶"; position: absolute; left: 0; color: #2c2c2c; font-size: 9px; top: 11px; }
-    .marketing-list li a { color: #2c2c2c; font-weight: 700; text-decoration: none; border-bottom: 2px solid #ffff00; padding-bottom: 1px; }
-    .marketing-list li a:hover { background: #ffff00; }
+    .marketing-list li::before { content: "▶"; position: absolute; left: 0; color: #C9A84C; font-size: 9px; top: 11px; }
+    .marketing-list li a { color: #C9A84C; font-weight: 700; text-decoration: none; border-bottom: 2px solid #C9A84C; padding-bottom: 1px; }
+    .marketing-list li a:hover { background: #c9a84c; color: #111; }
 
     /* Rationale box */
-    .rationale-box { background: #f8f8f8; border: 1px solid #ddd; padding: 20px 24px; margin-top: 14px; }
-    .rationale-box p { font-size: 13px; color: #333; line-height: 1.8; }
-    .rationale-box strong { color: #111; }
+    .rationale-box { background: #122840; border: 1px solid rgba(255,255,255,0.12); padding: 20px 24px; margin-top: 14px; }
+    .rationale-box p { font-size: 13px; color: #c8d4e0; line-height: 1.8; }
+    .rationale-box strong { color: #e8edf2; }
 
     /* Exchange callout */
-    .callout-box { margin-top: 14px; background: #f0f6ff; border-left: 3px solid #4477cc; padding: 14px 18px; font-size: 13px; color: #333; line-height: 1.8; }
-    .callout-box a { color: #2c2c2c; font-weight: 700; text-decoration: none; border-bottom: 2px solid #ffff00; padding-bottom: 1px; }
-    .callout-box a:hover { background: #ffff00; }
+    .callout-box { margin-top: 14px; background: #0d2440; border-left: 3px solid #4477cc; padding: 14px 18px; font-size: 13px; color: #94c4f0; line-height: 1.8; }
+    .callout-box a { color: #C9A84C; font-weight: 700; text-decoration: none; border-bottom: 2px solid #C9A84C; padding-bottom: 1px; }
+    .callout-box a:hover { background: #c9a84c; color: #111; }
 
     /* CoStar badge */
-    .costar-badge { background: #2c2c2c; color: #fff; padding: 14px 20px; margin-top: 14px; display: flex; align-items: center; gap: 16px; }
+    .costar-badge { background: #1B3A5C; color: #fff; padding: 14px 20px; margin-top: 14px; display: flex; align-items: center; gap: 16px; }
     .costar-badge .badge-text { font-size: 14px; font-weight: 700; }
     .costar-badge .badge-sub { font-size: 11px; color: #ccc; margin-top: 3px; }
     .costar-badge .badge-icon { font-size: 28px; }
 
     /* External link row */
-    .ext-link { display: block; margin-top: 10px; font-size: 13px; }
-    .ext-link a { color: #2c2c2c; font-weight: 700; text-decoration: none; border-bottom: 2px solid #ffff00; padding-bottom: 1px; }
-    .ext-link a:hover { background: #ffff00; }
+    .ext-link { display: block; margin-top: 10px; font-size: 13px; color: #c8d4e0; }
+    .ext-link a { color: #94c4f0; font-weight: 700; text-decoration: none; border-bottom: 2px solid #C9A84C; padding-bottom: 1px; }
+    .ext-link a:hover { background: #c9a84c; color: #111; }
 
     /* Footer */
-    .agents { margin-top: 36px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 10px; color: #555; line-height: 2.0; }
-    .agents .name { font-weight: 700; font-size: 11px; color: #111; }
-    .footer-bar { margin-top: 20px; background: #2c2c2c; color: #ccc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
+    .agents { margin-top: 36px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 10px; color: #94a8bc; line-height: 2.0; }
+    .agents .name { font-weight: 700; font-size: 11px; color: #e8edf2; }
+    .footer-bar { margin-top: 20px; background: #0a1828; color: #94a8bc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
   </style>
 </head>
 <body>
@@ -132,7 +133,7 @@
       <div class="section-num">01 &nbsp;/&nbsp; Buyer Reach</div>
       <h3>The Platform Behind Your Sale</h3>
     </div>
-    <p style="font-size:12px; color:#666; margin-bottom:12px;">Your listing reaches a buyer pool that no independent sale or smaller brokerage can replicate. Full-market exposure is not a talking point — it is the mechanism that creates competition, and competition is what protects your price.</p>
+    <p style="font-size:12px; color:#7d96aa; margin-bottom:12px;">Your listing reaches a buyer pool that no independent sale or smaller brokerage can replicate. Full-market exposure is not a talking point — it is the mechanism that creates competition, and competition is what protects your price.</p>
 
     <div class="big-stats">
       <div class="big-stat highlight"><div class="num">55,000+</div><div class="lbl">Owner Database</div></div>

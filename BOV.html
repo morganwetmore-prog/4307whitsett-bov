@@ -3,35 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>4307 Whitsett Ave – Broker Opinion of Value</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; font-size: 14px; color: #111; background: #fff; max-width: 860px; margin: 0 auto; }
+    body { font-family: 'Montserrat', Arial, sans-serif; font-size: 14px; color: #e8edf2; background: #0d2137; max-width: 860px; margin: 0 auto; }
 
     /* ── HERO ── */
-    .hero { position: relative; background: #2c2c2c; color: #fff; }
+    .hero { position: relative; background: #1B3A5C; color: #fff; }
     .hero img { width: 100%; height: 320px; object-fit: cover; display: block; opacity: 0.55; }
     .hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 40px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); }
     .hero-overlay .prepared { font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: #ccc; margin-bottom: 6px; }
     .hero-overlay h1 { font-size: 30px; font-weight: 700; line-height: 1.15; }
     .hero-overlay .sub { font-size: 14px; color: #ddd; margin-top: 6px; }
-    .hero-overlay .bov-price { display: inline-block; background: #ffff00; color: #111; font-size: 22px; font-weight: 700; padding: 6px 16px; margin-top: 12px; }
+    .hero-overlay .bov-price { display: inline-block; background: #c9a84c; color: #111; font-size: 22px; font-weight: 700; padding: 6px 16px; margin-top: 12px; }
 
     /* ── BODY WRAPPER ── */
     .body-wrap { padding: 40px 56px; }
 
     /* ── SECTION HEADERS ── */
     .section-header { margin-top: 32px; margin-bottom: 14px; }
-    .section-header h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #2c2c2c; border-bottom: 2px solid #2c2c2c; padding-bottom: 6px; display: inline-block; }
+    .section-header h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #C9A84C; border-bottom: 2px solid #C9A84C; padding-bottom: 6px; display: inline-block; }
 
     /* ── KEY METRICS GRID ── */
-    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid #ddd; margin-bottom: 8px; }
-    .metric-cell { padding: 14px 16px; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid rgba(255,255,255,0.12); margin-bottom: 8px; }
+    .metric-cell { padding: 14px 16px; border-right: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12); background: #122840; }
     .metric-cell:nth-child(4n) { border-right: none; }
-    .metric-cell .m-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #888; margin-bottom: 4px; }
-    .metric-cell .m-val { font-size: 18px; font-weight: 700; }
-    .metric-cell .m-sub { font-size: 10px; color: #888; margin-top: 2px; }
-    .metric-cell.highlight { background: #ffff00; }
+    .metric-cell .m-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #6a8298; margin-bottom: 4px; }
+    .metric-cell .m-val { font-size: 18px; font-weight: 700; color: #e8edf2; }
+    .metric-cell .m-sub { font-size: 10px; color: #6a8298; margin-top: 2px; }
+    .metric-cell.highlight { background: #c9a84c; }
     .metric-cell.highlight .m-label { color: #555; }
+    .metric-cell.highlight .m-val { color: #111; }
+    .metric-cell.highlight .m-sub { color: #555; }
 
     /* ── TWO COLUMN LAYOUT ── */
     .two-col { display: flex; gap: 24px; margin-top: 14px; }
@@ -39,66 +42,66 @@
 
     /* ── PROPERTY FACTS TABLE ── */
     table.facts { width: 100%; border-collapse: collapse; }
-    table.facts tr { border-bottom: 1px solid #e8e8e8; }
-    table.facts td { padding: 8px 0; font-size: 13px; }
-    table.facts td.label { color: #777; width: 52%; }
-    table.facts td.val { font-weight: 600; text-align: right; }
+    table.facts tr { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    table.facts td { padding: 8px 0; font-size: 13px; color: #c8d4e0; }
+    table.facts td.label { color: #94a8bc; width: 52%; }
+    table.facts td.val { font-weight: 600; text-align: right; color: #e8edf2; }
 
     /* ── INCOME/EXPENSE TABLE ── */
     table.financials { width: 100%; border-collapse: collapse; }
-    table.financials td { padding: 8px 6px; border-bottom: 1px solid #e8e8e8; font-size: 13px; }
-    table.financials td.val { text-align: right; font-weight: 600; }
-    table.financials .section-row td { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #888; padding-top: 14px; padding-bottom: 3px; border-bottom: none; }
-    table.financials tr.subtotal td { font-weight: 700; border-top: 2px solid #111; border-bottom: 2px solid #111; background: #f5f5f5; padding: 9px 6px; }
-    table.financials tr.noi-row td { font-weight: 700; background: #ffff00; padding: 9px 6px; font-size: 14px; border-bottom: none; }
-    table.financials tr.indent td:first-child { padding-left: 14px; color: #555; }
+    table.financials td { padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 13px; color: #c8d4e0; }
+    table.financials td.val { text-align: right; font-weight: 600; color: #e8edf2; }
+    table.financials .section-row td { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6a8298; padding-top: 14px; padding-bottom: 3px; border-bottom: none; }
+    table.financials tr.subtotal td { font-weight: 700; border-top: 2px solid rgba(255,255,255,0.25); border-bottom: 2px solid rgba(255,255,255,0.25); background: #0f2030; padding: 9px 6px; color: #e8edf2; }
+    table.financials tr.noi-row td { font-weight: 700; background: #c9a84c; padding: 9px 6px; font-size: 14px; border-bottom: none; color: #111; }
+    table.financials tr.indent td:first-child { padding-left: 14px; color: #94a8bc; }
 
     /* ── RENT UPSIDE BOX ── */
-    .upside-box { margin-top: 14px; background: #d6f0c2; border-left: 3px solid #4aaa20; padding: 12px 16px; font-size: 12px; line-height: 1.8; }
-    .upside-box strong { color: #1a5c00; }
+    .upside-box { margin-top: 14px; background: #1a3a28; border-left: 3px solid #5dc87a; padding: 12px 16px; font-size: 12px; line-height: 1.8; color: #a0e8b8; }
+    .upside-box strong { color: #5dc87a; }
 
     /* ── HIGHLIGHTS LIST ── */
     .highlights-list { list-style: none; margin-top: 10px; }
-    .highlights-list li { padding: 8px 0; border-bottom: 1px solid #e8e8e8; font-size: 13px; padding-left: 16px; position: relative; line-height: 1.5; }
-    .highlights-list li::before { content: "▶"; position: absolute; left: 0; color: #2c2c2c; font-size: 9px; top: 10px; }
+    .highlights-list li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 13px; padding-left: 16px; position: relative; line-height: 1.5; color: #c8d4e0; }
+    .highlights-list li::before { content: "▶"; position: absolute; left: 0; color: #C9A84C; font-size: 9px; top: 10px; }
 
     /* ── COMPS TABLE ── */
     table.comps { width: 100%; border-collapse: collapse; }
-    table.comps thead tr { background: #2c2c2c; color: #fff; }
+    table.comps thead tr { background: #1B3A5C; color: #fff; }
     table.comps thead th { padding: 10px 10px; text-align: right; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
     table.comps thead th:first-child { text-align: left; }
-    table.comps tbody tr { border-bottom: 1px solid #e8e8e8; }
-    table.comps tbody tr:hover { background: #fafafa; }
-    table.comps tbody td { padding: 9px 10px; text-align: right; font-size: 12px; }
+    table.comps tbody tr { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    table.comps tbody tr:hover { background: rgba(255,255,255,0.04); }
+    table.comps tbody td { padding: 9px 10px; text-align: right; font-size: 12px; color: #c8d4e0; }
     table.comps tbody td:first-child { text-align: left; }
-    table.comps tbody tr.subject-row { background: #ffff00; font-weight: 700; }
-    table.comps tbody tr.subject-row td { font-size: 13px; }
+    table.comps tbody tr.subject-row { background: #c9a84c; font-weight: 700; }
+    table.comps tbody tr.subject-row td { font-size: 13px; color: #111; }
 
-    .comp-note { margin-top: 12px; font-size: 11px; color: #666; line-height: 1.7; font-style: italic; }
+    .comp-note { margin-top: 12px; font-size: 11px; color: #6a8298; line-height: 1.7; font-style: italic; }
 
     /* ── PRICING RATIONALE ── */
-    .rationale-box { background: #f8f8f8; border: 1px solid #ddd; padding: 20px 24px; margin-top: 14px; }
-    .rationale-box p { font-size: 13px; color: #333; line-height: 1.8; margin-bottom: 10px; }
+    .rationale-box { background: #122840; border: 1px solid rgba(255,255,255,0.12); padding: 20px 24px; margin-top: 14px; }
+    .rationale-box p { font-size: 13px; color: #c8d4e0; line-height: 1.8; margin-bottom: 10px; }
     .rationale-box p:last-child { margin-bottom: 0; }
-    .rationale-box strong { color: #111; }
+    .rationale-box strong { color: #e8edf2; }
 
     /* ── TOP NAV BAR ── */
-    .topbar { background: #2c2c2c; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; }
+    .topbar { background: #1B3A5C; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; }
     .topbar .brand { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
     .topbar nav a { color: #ccc; text-decoration: none; font-size: 12px; margin-left: 22px; letter-spacing: 0.5px; transition: color 0.15s; }
-    .topbar nav a:hover { color: #ffff00; }
+    .topbar nav a:hover { color: #c9a84c; }
 
     /* ── NAV LINKS ── */
-    .page-nav { margin-top: 28px; background: #f0f0f0; padding: 16px 20px; border: 1px solid #ddd; }
-    .page-nav h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #555; margin-bottom: 10px; }
+    .page-nav { margin-top: 28px; background: #122840; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.12); }
+    .page-nav h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #6a8298; margin-bottom: 10px; }
     .page-nav ul { list-style: none; display: flex; gap: 14px; flex-wrap: wrap; }
-    .page-nav a { color: #2c2c2c; text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 2px solid #ffff00; padding-bottom: 2px; }
-    .page-nav a:hover { background: #ffff00; }
+    .page-nav a { color: #94c4f0; text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 2px solid #C9A84C; padding-bottom: 2px; }
+    .page-nav a:hover { background: #c9a84c; color: #111; }
 
     /* ── FOOTER ── */
-    .agents { margin-top: 28px; padding: 0 56px 16px; border-top: 1px solid #ddd; padding-top: 14px; font-size: 10px; color: #555; line-height: 2.0; }
-    .agents .name { font-weight: 700; font-size: 11px; color: #111; }
-    .footer-bar { background: #2c2c2c; color: #ccc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
+    .agents { margin-top: 28px; padding: 0 56px 16px; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px; font-size: 10px; color: #94a8bc; line-height: 2.0; }
+    .agents .name { font-weight: 700; font-size: 11px; color: #e8edf2; }
+    .footer-bar { background: #0a1828; color: #94a8bc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
   </style>
 </head>
 <body>
@@ -119,7 +122,7 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img src="../Photos/PrimaryPhoto (3).jpg" alt="4307 Whitsett Ave, Studio City">
+    <img src="hero.webp" alt="4307 Whitsett Ave, Studio City">
     <div class="hero-overlay">
       <div class="prepared">Broker Opinion of Value — Prepared for Christine Luu</div>
       <h1>4307 Whitsett Ave<br>Studio City, CA 91604</h1>
@@ -275,7 +278,7 @@
           <td>1986</td>
           <td>$7,995,000</td>
           <td>$7,450,000</td>
-          <td style="color:#c00;">−7%</td>
+          <td style="color:#ff8888;">−7%</td>
           <td>$413,889</td>
           <td>12.91×</td>
           <td>4.94%</td>
@@ -289,7 +292,7 @@
           <td>1990</td>
           <td>$12,995,000</td>
           <td>$12,000,000</td>
-          <td style="color:#c00;">−8%</td>
+          <td style="color:#ff8888;">−8%</td>
           <td>$333,333</td>
           <td>12.07×</td>
           <td>5.39%</td>
@@ -303,7 +306,7 @@
           <td>1986</td>
           <td>$4,999,000</td>
           <td>$4,950,000</td>
-          <td style="color:#c00;">−1%</td>
+          <td style="color:#ff8888;">−1%</td>
           <td>$309,375</td>
           <td>11.18×</td>
           <td>5.76%</td>
@@ -352,7 +355,7 @@
         <tr><td>$6,400,000</td><td>$400,000</td><td>$382.78</td><td>11.58×</td><td>5.44%</td></tr>
         <tr><td>$6,500,000</td><td>$406,250</td><td>$388.76</td><td>11.76×</td><td>5.34%</td></tr>
         <tr><td>$6,600,000</td><td>$412,500</td><td>$394.74</td><td>11.94×</td><td>5.23%</td></tr>
-        <tr style="background:#ffff00; font-weight:700;"><td>$6,700,000 ★ BOV</td><td>$418,750</td><td>$400.72</td><td>12.12×</td><td>5.13%</td></tr>
+        <tr style="background:#c9a84c; font-weight:700;"><td style="color:#111;">$6,700,000 ★ BOV</td><td style="color:#111;">$418,750</td><td style="color:#111;">$400.72</td><td style="color:#111;">12.12×</td><td style="color:#111;">5.13%</td></tr>
         <tr><td>$6,800,000</td><td>$425,000</td><td>$406.70</td><td>12.30×</td><td>5.03%</td></tr>
         <tr><td>$6,900,000</td><td>$431,250</td><td>$412.68</td><td>12.48×</td><td>4.94%</td></tr>
         <tr><td>$7,000,000</td><td>$437,500</td><td>$418.66</td><td>12.66×</td><td>4.85%</td></tr>
@@ -360,7 +363,7 @@
         <tr><td>$7,200,000</td><td>$450,000</td><td>$430.62</td><td>13.03×</td><td>4.67%</td></tr>
       </tbody>
     </table>
-    <p style="font-size:11px; color:#888; margin-top:6px; font-style:italic;">Property tax (1.25%) and insurance scale with price at each level. See sensitivity.html for full methodology.</p>
+    <p style="font-size:11px; color:#6a8298; margin-top:6px; font-style:italic;">Property tax (1.25%) and insurance scale with price at each level. See sensitivity.html for full methodology.</p>
 
     <!-- PRICING RATIONALE -->
     <div class="section-header">
@@ -372,7 +375,7 @@
       <p><strong>The 5.13% buyer cap rate is market-appropriate.</strong> It accounts for fully reassessed property taxes at purchase (1.25% of price — the reality every buyer underwrites). At 5.13%, this property pencils for the most active buyer profile in today's market: the 1031 exchange buyer deploying equity from a sale of a lower-yielding asset or a highly appreciated property.</p>
       <p><strong>Non-RSO is the differentiator.</strong> Studio City's non-RSO designation allows a new owner to push rents to market at every turn — no rent control ceiling, no annual limit. This is the feature buyers are paying up for across the SFV. Properties without RSO exposure consistently trade at a premium to the broader market, and 4307 Whitsett is a direct beneficiary of that dynamic.</p>
     </div>
-    <p style="margin-top:12px; font-size:12px;">→ <a href="https://laaa.com/insights/selling-guide" target="_blank" rel="noopener" style="color:#2c2c2c; font-weight:700; text-decoration:none; border-bottom:2px solid #ffff00; padding-bottom:1px;">How we value and sell apartment buildings — laaa.com/insights/selling-guide</a></p>
+    <p style="margin-top:12px; font-size:12px; color:#c8d4e0;">→ <a href="https://laaa.com/insights/selling-guide" target="_blank" rel="noopener" style="color:#C9A84C; font-weight:700; text-decoration:none; border-bottom:2px solid #C9A84C; padding-bottom:1px;">How we value and sell apartment buildings — laaa.com/insights/selling-guide</a></p>
 
     <!-- PAGE NAVIGATION -->
     <div class="page-nav">
