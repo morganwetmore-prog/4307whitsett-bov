@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LAAA Team – Track Record</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; font-size: 14px; color: #111; background: #fff; padding: 48px 56px; max-width: 900px; margin: 0 auto; }
+
+    .topbar { background: #2c2c2c; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; margin: -48px -56px 48px; }
+    .topbar .brand { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+    .topbar nav a { color: #ccc; text-decoration: none; font-size: 12px; margin-left: 22px; letter-spacing: 0.5px; transition: color 0.15s; }
+    .topbar nav a:hover { color: #ffff00; }
+    .page-title { margin-bottom: 28px; }
+    .page-title h1 { font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
+    .page-title h2 { font-size: 13px; font-weight: 400; color: #555; margin-top: 6px; }
+    .page-title .divider { border-bottom: 3px solid #111; margin-top: 12px; padding-bottom: 10px; }
+
+    /* Big stats row */
+    .big-stats { display: flex; gap: 0; margin: 24px 0; border: 1px solid #ddd; }
+    .big-stat { flex: 1; padding: 18px 14px; text-align: center; border-right: 1px solid #ddd; }
+    .big-stat:last-child { border-right: none; }
+    .big-stat .num { font-size: 26px; font-weight: 700; color: #111; }
+    .big-stat .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #777; margin-top: 4px; line-height: 1.4; }
+    .big-stat.highlight { background: #2c2c2c; }
+    .big-stat.highlight .num { color: #ffff00; }
+    .big-stat.highlight .lbl { color: #aaa; }
+
+    /* CoStar badge */
+    .costar-badge { background: #2c2c2c; color: #fff; padding: 14px 20px; margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+    .costar-badge .badge-text { font-size: 14px; font-weight: 700; }
+    .costar-badge .badge-sub { font-size: 11px; color: #ccc; margin-top: 3px; }
+    .costar-badge .badge-icon { font-size: 28px; }
+
+    /* Section headers */
+    .section-header { margin-top: 28px; margin-bottom: 14px; }
+    .section-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #2c2c2c; border-bottom: 2px solid #2c2c2c; padding-bottom: 6px; display: inline-block; }
+
+    /* SFV breakdown table */
+    table.sfv-table { width: 100%; border-collapse: collapse; }
+    table.sfv-table thead tr { background: #2c2c2c; color: #fff; }
+    table.sfv-table thead th { padding: 10px 12px; text-align: right; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; }
+    table.sfv-table thead th:first-child { text-align: left; }
+    table.sfv-table tbody tr { border-bottom: 1px solid #e8e8e8; }
+    table.sfv-table tbody td { padding: 9px 12px; text-align: right; font-size: 13px; }
+    table.sfv-table tbody td:first-child { text-align: left; font-weight: 600; }
+    table.sfv-table tbody tr.total-row { background: #f5f5f5; font-weight: 700; }
+    table.sfv-table tbody tr.sfv-highlight { background: #ffff00; font-weight: 700; border-top: 2px solid #cca800; border-bottom: 2px solid #cca800; }
+    table.sfv-table tbody tr.subject-note td { background: #2c2c2c; color: #ccc; font-size: 11px; text-align: left; font-weight: 400; padding: 8px 12px; }
+    table.sfv-table tbody tr.subject-note td strong { color: #ffff00; }
+
+    /* Context box */
+    .context-box { margin-top: 16px; background: #f0f6ff; border-left: 3px solid #4477cc; padding: 12px 16px; font-size: 12px; color: #333; line-height: 1.8; }
+
+    /* Bio cards */
+    .bio-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 14px; }
+    .bio-card { border: 1px solid #ddd; padding: 16px; background: #fafafa; }
+    .bio-card .bio-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .bio-card .bio-title { font-size: 11px; color: #555; margin-bottom: 10px; border-bottom: 1px solid #e0e0e0; padding-bottom: 8px; }
+    .bio-card .bio-awards { font-size: 11px; color: #333; line-height: 1.8; }
+    .bio-card .award-tag { display: inline-block; background: #ffff00; font-size: 10px; font-weight: 700; padding: 2px 6px; margin: 2px 2px 0 0; }
+
+    /* Full transaction history */
+    .txn-wrap { margin-top: 14px; max-height: 640px; overflow-y: auto; border: 1px solid #ddd; }
+    table.txn-table { width: 100%; border-collapse: collapse; }
+    table.txn-table thead { position: sticky; top: 0; z-index: 1; }
+    table.txn-table thead tr { background: #2c2c2c; color: #fff; }
+    table.txn-table thead th { padding: 10px 10px; text-align: right; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    table.txn-table thead th:first-child { text-align: left; }
+    table.txn-table thead th:nth-child(2) { text-align: left; }
+    table.txn-table tbody tr { border-bottom: 1px solid #eee; }
+    table.txn-table tbody td { padding: 7px 10px; font-size: 12px; text-align: right; white-space: nowrap; }
+    table.txn-table tbody td:first-child { text-align: center; font-weight: 700; color: #888; }
+    table.txn-table tbody td:nth-child(2) { text-align: left; }
+    table.txn-table tbody tr.sfv { background: #fffde6; }
+    table.txn-table tbody tr.sfv td:first-child { color: #cca800; }
+    table.txn-table tbody tr:hover { background: #f5f5f5; }
+    table.txn-table tbody tr.sfv:hover { background: #fff8cc; }
+    .txn-legend { margin-top: 8px; font-size: 11px; color: #666; }
+    .txn-legend span { display: inline-block; background: #fffde6; border: 1px solid #e0cc00; padding: 2px 8px; margin-right: 6px; font-weight: 600; }
+
+    /* Closing statement */
+    .closing-statement { margin-top: 28px; background: #2c2c2c; color: #fff; padding: 20px 24px; }
+    .closing-statement h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #ffff00; }
+    .closing-statement p { font-size: 12px; color: #ccc; line-height: 1.8; }
+
+    /* Footer */
+    .agents { margin-top: 28px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 10px; color: #555; line-height: 2.0; }
+    .agents .name { font-weight: 700; font-size: 11px; color: #111; }
+    .footer-bar { margin-top: 20px; background: #2c2c2c; color: #ccc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">LAAA Team &nbsp;|&nbsp; Marcus &amp; Millichap</div>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="BOV.html">BOV</a>
+      <a href="sensitivity.html">Range of Value</a>
+      <a href="net-proceeds.html">Net Proceeds</a>
+      <a href="exchange.html">Exchange Analysis</a>
+      <a href="track-record.html">Track Record</a>
+      <a href="value-of-rep.html">What's Included</a>
+    </nav>
+  </div>
+
+  <div class="page-title">
+    <h1>LAAA Team — Track Record</h1>
+    <h2>Glen Scher &nbsp;|&nbsp; Filip Niculete &nbsp;|&nbsp; Morgan Wetmore &nbsp;|&nbsp; Marcus &amp; Millichap, Encino</h2>
+    <div class="divider"></div>
+  </div>
+
+  <!-- Big stats -->
+  <div class="big-stats">
+    <div class="big-stat highlight"><div class="num">459+</div><div class="lbl">Closed Transactions</div></div>
+    <div class="big-stat"><div class="num">$1.45B+</div><div class="lbl">Total Sales Volume</div></div>
+    <div class="big-stat"><div class="num">4,100+</div><div class="lbl">Units Sold</div></div>
+    <div class="big-stat highlight"><div class="num">96%</div><div class="lbl">Avg Sale-to-List Ratio</div></div>
+    <div class="big-stat"><div class="num">36</div><div class="lbl">Median Days on Market</div></div>
+    <div class="big-stat"><div class="num">40%</div><div class="lbl">Listings Sold Under 30 Days</div></div>
+    <div class="big-stat highlight"><div class="num">85</div><div class="lbl">Consecutive Months Closing Deals</div></div>
+  </div>
+
+  <!-- CoStar badge -->
+  <div class="costar-badge">
+    <div class="badge-icon">&#9733;</div>
+    <div>
+      <div class="badge-text">CoStar Verified #1 — LA County Multifamily Transactions (Trailing 3 Years)</div>
+      <div class="badge-sub">More multifamily transactions closed in LA County than any other team. Independently verified by CoStar Group.</div>
+    </div>
+  </div>
+
+  <!-- SFV Breakdown -->
+  <div class="section-header">
+    <h3>San Fernando Valley Market Presence — Christine's Submarket</h3>
+  </div>
+  <p style="font-size:12px; color:#666; margin-bottom:12px;">The SFV accounts for 203 of our 459 closed transactions — our deepest, most active submarket. Studio City sits in the highest-value corridor of the Valley. Our buyer database and owner relationships in this area are unmatched.</p>
+
+  <table class="sfv-table">
+    <thead>
+      <tr>
+        <th style="text-align:left;">Submarket</th>
+        <th>Transactions</th>
+        <th>Volume</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="total-row"><td>San Fernando Valley (Total)</td><td>203</td><td>$788M</td></tr>
+      <tr><td>Sherman Oaks</td><td>28</td><td>$101M</td></tr>
+      <tr><td>Van Nuys</td><td>41</td><td>$115M</td></tr>
+      <tr><td>North Hollywood</td><td>40</td><td>$106M</td></tr>
+      <tr><td>Valley Village</td><td>14</td><td>$48M</td></tr>
+      <tr class="sfv-highlight"><td>Studio City / Encino / Toluca Lake &#9733;</td><td>8</td><td>$54M</td></tr>
+      <tr class="subject-note"><td colspan="3"><strong>4307 Whitsett Ave — Studio City:</strong> Our BOV of $418,750/unit is consistent with recent Studio City closings ranging from $299K–$678K/unit. Non-RSO status and 100% occupancy support the upper end of that range.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="context-box">
+    <strong>Why this matters for Christine:</strong> Studio City non-RSO assets are among the most sought-after in the Valley. We have closed deals in this submarket at $299K–$678K/unit and have a direct pipeline of buyers who have already expressed interest in properties of this vintage, size, and location. 4307 Whitsett's 100% occupancy and non-RSO status are key buyer draws we know how to market.
+  </div>
+
+  <!-- Team bios -->
+  <div class="section-header" style="margin-top:28px;">
+    <h3>The Team</h3>
+  </div>
+
+  <div class="bio-cards">
+    <div class="bio-card">
+      <div class="bio-name">Glen Scher</div>
+      <div class="bio-title">Senior Managing Director of Investments</div>
+      <div class="bio-awards">
+        <span class="award-tag">Chairman's Club</span>
+        <span class="award-tag">SIA Award</span>
+        <span class="award-tag">10× SRA Awards</span>
+        <br><br>
+        30+ years closing LA County multifamily. Consistently ranked among Marcus &amp; Millichap's top national producers. Deep relationships with the Valley's largest owner families.
+      </div>
+    </div>
+    <div class="bio-card">
+      <div class="bio-name">Filip Niculete</div>
+      <div class="bio-title">Senior Managing Director of Investments</div>
+      <div class="bio-awards">
+        <span class="award-tag">Chairman's Club</span>
+        <span class="award-tag">SIA Award</span>
+        <span class="award-tag">12× SRA Awards</span>
+        <br><br>
+        One of the most decorated multifamily brokers in the Western Region. Specializes in complex transactions, 1031 exchanges, and portfolio dispositions throughout the SFV.
+      </div>
+    </div>
+    <div class="bio-card">
+      <div class="bio-name">Morgan Wetmore</div>
+      <div class="bio-title">Associate — Investments</div>
+      <div class="bio-awards">
+        <span class="award-tag">Pace Setter 2025</span>
+        <span class="award-tag">GRIT Award ×2</span>
+        <br><br>
+        Studio City and North Hollywood specialist. Day-to-day deal point on 4307 Whitsett. Works exclusively within the LAAA team's buyer network and owner database to maximize execution velocity.
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Transaction History -->
+  <div class="section-header" style="margin-top:32px;">
+    <h3>Complete Transaction History — 459 Closed Deals Since 2013</h3>
+  </div>
+  <p style="font-size:12px; color:#666; margin-bottom:10px;">Showing 50 most recent of 459 total transactions. All deal types: apartments, land, and NNN. Source: laaa.com</p>
+
+  <div class="txn-legend">
+    <span>★ SFV</span> San Fernando Valley transaction
+  </div>
+
+  <div class="txn-wrap">
+    <table class="txn-table">
+      <thead>
+        <tr>
+          <th>Yr</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>Type</th>
+          <th>Units</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 2026 -->
+        <tr><td>2026</td><td>4123 Ocean View Blvd</td><td>Montrose</td><td>Apts</td><td>6</td><td>$1,685,000</td></tr>
+        <tr><td>2026</td><td>1714 SE Highway 138</td><td>Conyers</td><td>NNN</td><td>—</td><td>$2,900,000</td></tr>
+        <tr><td>2026</td><td>4718-4726 Oakwood Ave</td><td>Koreatown</td><td>Land</td><td>—</td><td>$4,700,000</td></tr>
+        <tr><td>2026</td><td>1536 Serrano Ave</td><td>East Hollywood</td><td>Apts</td><td>42</td><td>$7,600,000</td></tr>
+        <tr><td>2026</td><td>3662 Fredonia Dr</td><td>Hollywood Hills</td><td>Apts</td><td>4</td><td>$1,475,000</td></tr>
+        <tr><td>2026</td><td>1711 Galleria Blvd</td><td>Franklin</td><td>NNN</td><td>—</td><td>$5,150,000</td></tr>
+        <tr class="sfv"><td>★ 2026</td><td>14932 Kittridge St</td><td>Van Nuys</td><td>Apts</td><td>4</td><td>$1,734,000</td></tr>
+        <!-- 2025 -->
+        <tr><td>2025</td><td>819 Beacon Ave</td><td>Downtown LA</td><td>Apts</td><td>15</td><td>$1,925,000</td></tr>
+        <tr><td>2025</td><td>201 El Camino Real</td><td>Menlo Park</td><td>Land</td><td>—</td><td>$5,600,000</td></tr>
+        <tr><td>2025</td><td>514-516 E Oak St &amp; 601 Grand Ave</td><td>Ojai</td><td>Apts</td><td>32</td><td>$8,250,000</td></tr>
+        <tr><td>2025</td><td>7749 St Bernard St</td><td>Playa Del Rey</td><td>Apts</td><td>14</td><td>$4,380,000</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>11700 Magnolia Blvd</td><td>Valley Village</td><td>Apts</td><td>19</td><td>$8,525,000</td></tr>
+        <tr><td>2025</td><td>3915 N Duke St</td><td>Durham</td><td>NNN</td><td>—</td><td>$1,345,000</td></tr>
+        <tr><td>2025</td><td>4705-4709 Elmwood Ave</td><td>Koreatown</td><td>Land</td><td>—</td><td>$3,050,000</td></tr>
+        <tr><td>2025</td><td>1701 E St NE</td><td>Washington</td><td>Apts</td><td>6</td><td>$1,850,000</td></tr>
+        <tr><td>2025</td><td>4201 Olton Rd</td><td>Plainview</td><td>NNN</td><td>—</td><td>$5,750,000</td></tr>
+        <tr><td>2025</td><td>24966 Walnut St</td><td>Santa Clarita</td><td>Apts</td><td>9</td><td>$1,825,000</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>5917 Buffalo Ave</td><td>Van Nuys</td><td>Apts</td><td>5</td><td>$1,645,000</td></tr>
+        <tr><td>2025</td><td>1617 Barry Ave</td><td>West LA</td><td>Land</td><td>—</td><td>$2,690,000</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>4637 Laurel Canyon Blvd</td><td>Valley Village</td><td>Apts</td><td>5</td><td>$5,150,000</td></tr>
+        <tr><td>2025</td><td>1420 Cochran Ave</td><td>Mid-City</td><td>Apts</td><td>13</td><td>$1,150,000</td></tr>
+        <tr><td>2025</td><td>1200 N H St</td><td>Oxnard</td><td>Apts</td><td>18</td><td>$4,647,332</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>14015 Oxnard St</td><td>Van Nuys</td><td>Apts</td><td>32</td><td>$5,136,000</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>6716 Sylmar Ave</td><td>Van Nuys</td><td>Apts</td><td>12</td><td>$3,500,000</td></tr>
+        <tr><td>2025</td><td>3205 Ocean Park Blvd</td><td>Santa Monica</td><td>Apts</td><td>6</td><td>$7,000,000</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>14658 Gilmore St</td><td>Van Nuys</td><td>Land</td><td>—</td><td>$1,690,000</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>12800 Oxnard St</td><td>North Hollywood</td><td>Apts</td><td>3</td><td>$1,125,000</td></tr>
+        <tr class="sfv"><td>★ 2025</td><td>3920 Knobhill Dr</td><td>Sherman Oaks</td><td>Land</td><td>—</td><td>$3,925,000</td></tr>
+        <tr><td>2025</td><td>1052 N Martel Ave</td><td>West Hollywood</td><td>Apts</td><td>5</td><td>$1,640,000</td></tr>
+        <tr><td>2025</td><td>1046 N Genesee Ave</td><td>West Hollywood</td><td>Apts</td><td>5</td><td>$1,860,000</td></tr>
+        <!-- 2024 -->
+        <tr class="sfv"><td>★ 2024</td><td>6228 Fulton Ave</td><td>Van Nuys</td><td>Apts</td><td>30</td><td>$8,740,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>10611 Landale St</td><td>Toluca Lake</td><td>Apts</td><td>5</td><td>$1,400,000</td></tr>
+        <tr><td>2024</td><td>107 Traders Cross</td><td>Bluffton</td><td>NNN</td><td>—</td><td>$6,295,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>11143 Aqua Vista St</td><td>North Hollywood</td><td>Apts</td><td>10</td><td>$2,300,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>12021 Hoffman St</td><td>Studio City</td><td>Apts</td><td>5</td><td>$1,495,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>5630 Fair Ave</td><td>North Hollywood</td><td>Apts</td><td>15</td><td>$7,625,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>5340 Ben Ave</td><td>Valley Village</td><td>Apts</td><td>4</td><td>$1,200,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>6311 Hazeltine Ave</td><td>Van Nuys</td><td>Apts</td><td>4</td><td>$915,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>11616 Burbank Blvd</td><td>North Hollywood</td><td>Apts</td><td>21</td><td>$9,627,750</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>4725 Radford Ave</td><td>Valley Village</td><td>Apts</td><td>21</td><td>$10,237,500</td></tr>
+        <tr><td>2024</td><td>1233 S Bedford St</td><td>Beverlywood</td><td>Land</td><td>—</td><td>$2,100,000</td></tr>
+        <tr><td>2024</td><td>301 S Central Expy</td><td>Anna</td><td>NNN</td><td>—</td><td>$3,975,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>12342 Osborne St</td><td>Pacoima</td><td>Land</td><td>—</td><td>$2,400,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>10550 Haddon Ave</td><td>Pacoima</td><td>Land</td><td>—</td><td>$380,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>11344 Oxnard St</td><td>North Hollywood</td><td>Apts</td><td>3</td><td>$890,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>6746 Ben Ave</td><td>North Hollywood</td><td>Land</td><td>—</td><td>$775,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>6740 Ben Ave</td><td>North Hollywood</td><td>Land</td><td>—</td><td>$775,000</td></tr>
+        <tr><td>2024</td><td>650 S Peculiar Dr</td><td>Peculiar</td><td>NNN</td><td>—</td><td>$2,400,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>7303 Woodley Ave</td><td>Van Nuys</td><td>Apts</td><td>5</td><td>$950,000</td></tr>
+        <tr class="sfv"><td>★ 2024</td><td>6902 Milwood Ave</td><td>Canoga Park</td><td>Apts</td><td>8</td><td>$1,510,000</td></tr>
+        <!-- 2023 -->
+        <tr class="sfv"><td>★ 2023</td><td>17800 Magnolia Blvd</td><td>Encino</td><td>Apts</td><td>21</td><td>$6,100,000</td></tr>
+        <!-- 2022 -->
+        <tr class="sfv"><td>★ 2022</td><td>12602 Moorpark St</td><td>Studio City</td><td>Apts</td><td>8</td><td>$5,425,000</td></tr>
+        <!-- 2021 -->
+        <tr class="sfv"><td>★ 2021</td><td>4077-4083 Tujunga Ave</td><td>Studio City</td><td>Apts</td><td>16</td><td>$7,925,000</td></tr>
+        <tr class="sfv"><td>★ 2021</td><td>11915 Kling St</td><td>Studio City</td><td>Apts</td><td>80</td><td>$25,050,000</td></tr>
+        <tr class="sfv"><td>★ 2021</td><td>15625 High Knoll Rd</td><td>Encino</td><td>Land</td><td>—</td><td>$1,550,000</td></tr>
+        <!-- 2020 -->
+        <tr class="sfv"><td>★ 2020</td><td>12325 Moorpark St</td><td>Studio City</td><td>Apts</td><td>12</td><td>$3,920,000</td></tr>
+        <tr class="sfv"><td>★ 2020</td><td>12100 Valley Spring Ln</td><td>Studio City</td><td>Apts</td><td>20</td><td>$7,900,000</td></tr>
+        <tr class="sfv"><td>★ 2020</td><td>21100 Erwin St</td><td>Woodland Hills</td><td>Comm</td><td>—</td><td>$12,750,000</td></tr>
+        <!-- 2019 -->
+        <tr class="sfv"><td>★ 2019</td><td>22425 Del Valle St</td><td>Woodland Hills</td><td>Apts</td><td>5</td><td>$2,725,000</td></tr>
+        <!-- 2017 -->
+        <tr class="sfv"><td>★ 2017</td><td>4224 Whitsett Avenue</td><td>Studio City</td><td>Land</td><td>—</td><td>$1,160,000</td></tr>
+        <tr class="sfv"><td>★ 2017</td><td>10725 Bloomfield Street</td><td>Toluca Lake</td><td>Apts</td><td>4</td><td>$1,350,000</td></tr>
+        <!-- 2016 -->
+        <tr class="sfv"><td>★ 2016</td><td>4455 Bakman Avenue</td><td>Studio City</td><td>Apts</td><td>6</td><td>$1,400,000</td></tr>
+        <!-- 2013 -->
+        <tr class="sfv"><td>★ 2013</td><td>22423 Del Valle Street</td><td>Woodland Hills</td><td>Apts</td><td>8</td><td>$1,745,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px; color:#999; margin-top:6px; font-style:italic;">Showing 63 of 459 transactions (50 most recent + Studio City, Encino, Toluca Lake &amp; Woodland Hills deals). Full history at laaa.com/track-record</p>
+
+  <!-- Closing statement -->
+  <div class="closing-statement">
+    <h4>A Realistic Price We Can Deliver Beats an Inflated Price That Sits</h4>
+    <p>Christine, when you evaluate BOVs, the number that matters is not the list price on page one — it's the price you actually close at, and how quickly. Our 96% sale-to-list ratio across 459 closed transactions means we price correctly and back it up. A listing that opens at $6.7M and trades at $6.4M — after 90+ days of negotiations and buyer fallouts — produces a worse outcome than a $6.5M listing that closes in 36 days. Our track record is the evidence. We don't chase listings with numbers we can't support.</p>
+  </div>
+
+  <div class="agents">
+    <div><span class="name">Morgan Wetmore</span> &nbsp;|&nbsp; Associate Investments &nbsp;|&nbsp; (818) 212-2724 &nbsp;|&nbsp; Morgan.Wetmore@marcusmillichap.com &nbsp;|&nbsp; CA 02209935</div>
+    <div><span class="name">Glen Scher</span> &nbsp;|&nbsp; Senior Managing Director &nbsp;|&nbsp; (818) 212-2808 &nbsp;|&nbsp; Glen.Scher@marcusmillichap.com &nbsp;|&nbsp; CA 01962976</div>
+    <div><span class="name">Filip Niculete</span> &nbsp;|&nbsp; Senior Managing Director &nbsp;|&nbsp; (818) 212-2748 &nbsp;|&nbsp; Filip.Niculete@marcusmillichap.com &nbsp;|&nbsp; CA 01905352</div>
+  </div>
+
+  <div class="footer-bar">
+    Marcus &amp; Millichap &nbsp;|&nbsp; 16830 Ventura Blvd, Suite 100, Encino, CA 91436 &nbsp;|&nbsp; (818) 212-2700
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4307 Whitsett Ave – Exchange Analysis</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; font-size: 14px; color: #111; background: #fff; padding: 48px 56px; max-width: 780px; margin: 0 auto; }
+
+    .topbar { background: #2c2c2c; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; margin: -48px -56px 48px; }
+    .topbar .brand { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+    .topbar nav a { color: #ccc; text-decoration: none; font-size: 12px; margin-left: 22px; letter-spacing: 0.5px; transition: color 0.15s; }
+    .topbar nav a:hover { color: #ffff00; }
+    .page-title { margin-bottom: 28px; }
+    .page-title h1 { font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
+    .page-title h2 { font-size: 13px; font-weight: 400; color: #555; margin-top: 6px; }
+    .page-title .divider { border-bottom: 3px solid #111; padding-bottom: 10px; margin-top: 12px; }
+
+    /* Section headers */
+    .section-header { margin-top: 32px; margin-bottom: 12px; }
+    .section-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #2c2c2c; border-bottom: 2px solid #2c2c2c; padding-bottom: 6px; display: inline-block; }
+    .section-header .section-num { font-size: 10px; color: #888; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Side-by-side return cards */
+    .return-cards { display: flex; gap: 20px; margin-top: 12px; }
+    .card { flex: 1; border: 1px solid #ddd; padding: 18px; background: #fafafa; }
+    .card h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #555; margin-bottom: 12px; border-bottom: 1px solid #e0e0e0; padding-bottom: 8px; }
+    .card table { width: 100%; border-collapse: collapse; }
+    .card td { padding: 7px 0; border-bottom: 1px solid #efefef; font-size: 13px; }
+    .card td.val { text-align: right; font-weight: 600; }
+    .card .highlight-row td { background: #ffff00; font-weight: 700; font-size: 14px; padding: 9px 0; border-bottom: none; }
+    .card .note-row td { font-size: 11px; color: #888; font-style: italic; border-bottom: none; padding-top: 8px; }
+
+    /* Net proceeds summary */
+    .proceeds-box { background: #d6f0c2; border: 1px solid #b0d9a0; padding: 16px 20px; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .proceeds-box .label { font-size: 13px; font-weight: 700; }
+    .proceeds-box .amount { font-size: 22px; font-weight: 700; color: #1a5c00; }
+    .proceeds-box .sub { font-size: 11px; color: #555; margin-top: 2px; }
+
+    /* NNN table */
+    table.nnn-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    table.nnn-table thead tr { background: #2c2c2c; color: #fff; }
+    table.nnn-table thead th { padding: 10px 12px; text-align: right; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; }
+    table.nnn-table thead th:first-child { text-align: left; }
+    table.nnn-table tbody tr { border-bottom: 1px solid #e8e8e8; }
+    table.nnn-table tbody td { padding: 9px 12px; text-align: right; font-size: 13px; }
+    table.nnn-table tbody td:first-child { text-align: left; font-weight: 600; }
+    table.nnn-table tbody tr.highlight td { background: #d6f0c2; font-weight: 700; }
+
+    /* NNN explainer */
+    .nnn-explainer { margin-top: 14px; background: #f0f6ff; border-left: 3px solid #4477cc; padding: 12px 16px; font-size: 12px; color: #333; line-height: 1.8; }
+    .nnn-explainer strong { color: #111; }
+
+    /* Commission framing */
+    .commission-box { margin-top: 32px; background: #f8f8f8; border: 1px solid #ddd; padding: 20px 24px; }
+    .commission-box h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #2c2c2c; margin-bottom: 14px; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+    .commission-box p { font-size: 12px; color: #444; line-height: 1.8; margin-bottom: 10px; }
+    .commission-box table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .commission-box td { padding: 8px 10px; font-size: 12px; border-bottom: 1px solid #e0e0e0; }
+    .commission-box td.val { text-align: right; font-weight: 600; }
+    .commission-box .net-row td { background: #ffff00; font-weight: 700; font-size: 13px; }
+    .commission-box .stats { margin-top: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .commission-box .stat-item { flex: 1; min-width: 120px; background: #2c2c2c; color: #fff; padding: 10px 14px; text-align: center; }
+    .commission-box .stat-item .num { font-size: 18px; font-weight: 700; color: #ffff00; }
+    .commission-box .stat-item .lbl { font-size: 10px; margin-top: 2px; color: #ccc; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Footer */
+    .agents { margin-top: 28px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 10px; color: #555; line-height: 2.0; }
+    .agents .name { font-weight: 700; font-size: 11px; color: #111; }
+    .footer-bar { margin-top: 20px; background: #2c2c2c; color: #ccc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">LAAA Team &nbsp;|&nbsp; Marcus &amp; Millichap</div>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="BOV.html">BOV</a>
+      <a href="sensitivity.html">Range of Value</a>
+      <a href="net-proceeds.html">Net Proceeds</a>
+      <a href="exchange.html">Exchange Analysis</a>
+      <a href="track-record.html">Track Record</a>
+      <a href="value-of-rep.html">What's Included</a>
+    </nav>
+  </div>
+
+  <div class="page-title">
+    <h1>Exchange Analysis</h1>
+    <h2>Prepared for Christine Luu &nbsp;|&nbsp; 4307 Whitsett Ave, Studio City, CA 91604</h2>
+    <div class="divider"></div>
+  </div>
+
+  <!-- SECTION 1: Current Return -->
+  <div class="section-header">
+    <div class="section-num">Section 1</div>
+    <h3>Your Current Return on This Property</h3>
+  </div>
+  <p style="font-size:12px; color:#666; margin-bottom:14px;">Based on 2025 actual operating expenses, including Christine's current property tax basis (~$30,819/yr). These figures reflect what you are actually earning today — not what a buyer would underwrite at purchase.</p>
+
+  <div class="return-cards">
+
+    <div class="card">
+      <h4>Unlevered (No Loan)</h4>
+      <table>
+        <tr><td>Effective Gross Income</td><td class="val">$542,802</td></tr>
+        <tr><td>Total Operating Expenses</td><td class="val">($175,069)</td></tr>
+        <tr><td>Net Operating Income</td><td class="val">$367,733</td></tr>
+        <tr><td>Market Value (BOV)</td><td class="val">$6,700,000</td></tr>
+        <tr class="highlight-row"><td>Unlevered Yield</td><td class="val">5.49%</td></tr>
+        <tr class="note-row"><td colspan="2">Active management &nbsp;|&nbsp; 16 tenants &nbsp;|&nbsp; Your time &amp; attention required</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4>Levered — With $2M Loan (I/O)</h4>
+      <table>
+        <tr><td>Net Operating Income</td><td class="val">$367,733</td></tr>
+        <tr><td>Annual Debt Service (I/O @ 5.90%)</td><td class="val">($118,000)</td></tr>
+        <tr><td>Annual Cash Flow</td><td class="val">$249,733</td></tr>
+        <tr><td>Your Equity ($6.7M − $2M loan)</td><td class="val">$4,700,000</td></tr>
+        <tr class="highlight-row"><td>Return on Equity (ROE)</td><td class="val">5.31%</td></tr>
+        <tr class="note-row"><td colspan="2">Loan assumed interest-only &nbsp;|&nbsp; Confirm terms with lender</td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2: Proceeds if She Sells -->
+  <div class="section-header" style="margin-top:28px;">
+    <div class="section-num">Section 2</div>
+    <h3>If You Sell — Estimated Net Proceeds</h3>
+  </div>
+
+  <div class="proceeds-box">
+    <div>
+      <div class="label">Cash Proceeds After Closing Costs + Loan Payoff</div>
+      <div class="sub">$6,700,000 BOV &nbsp;|&nbsp; $593,620 total closing costs &nbsp;|&nbsp; $2,000,000 loan payoff &nbsp;|&nbsp; See net-proceeds.html for full detail</div>
+    </div>
+    <div class="amount">$4,106,380</div>
+  </div>
+  <p style="font-size:11px; color:#888; margin-top:8px; font-style:italic;">This equity is available to deploy into a 1031 exchange within 45 days of close (identified) / 180 days (acquired). A 1031 exchange defers capital gains tax — your equity works for you at full value, not reduced by taxes.</p>
+
+  <!-- SECTION 3: NNN 1031 Scenario -->
+  <div class="section-header">
+    <div class="section-num">Section 3</div>
+    <h3>NNN 1031 Exchange — What Could Your Equity Earn?</h3>
+  </div>
+  <p style="font-size:12px; color:#666; margin-bottom:12px;">Deploying all $4,106,380 into a triple-net (NNN) property all-cash — no debt, no management, no 3 AM calls. Annual income at various NNN cap rates:</p>
+
+  <table class="nnn-table">
+    <thead>
+      <tr>
+        <th style="text-align:left;">NNN Cap Rate</th>
+        <th>Annual Income</th>
+        <th>Monthly Income</th>
+        <th>Management Required</th>
+        <th>Typical Lease Term</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>5.00%</td><td>$205,319</td><td>$17,110</td><td>None</td><td>10–20 years</td></tr>
+      <tr class="highlight"><td>5.50%</td><td>$225,851</td><td>$18,821</td><td>None</td><td>10–20 years</td></tr>
+      <tr><td>6.00%</td><td>$246,383</td><td>$20,532</td><td>None</td><td>10–20 years</td></tr>
+      <tr><td>6.50%</td><td>$266,915</td><td>$22,243</td><td>None</td><td>10–20 years</td></tr>
+    </tbody>
+  </table>
+
+  <div class="nnn-explainer">
+    <strong>What is a Triple-Net (NNN) Property?</strong><br>
+    In a NNN lease, the tenant — not you — pays property taxes, insurance, and maintenance. You receive a net check every month. No repairs, no vacancies to fill, no rent collection calls. Tenants are typically investment-grade national companies: Walgreens, Dollar General, AutoZone, O'Reilly Auto Parts, Starbucks, or fast-food chains. Leases run 10–20 years with built-in rent bumps.<br><br>
+    <strong>The comparison:</strong> Today your $4.7M in equity earns a 5.31% ROE — with 16 tenants, active management, and maintenance exposure. A NNN exchange at a 5.5% cap earns $225,851/yr passively. You give up a small amount of yield; you gain your time back entirely.
+  </div>
+
+  <div style="margin-top:20px; background:#f0f6ff; border-left:3px solid #4477cc; padding:12px 16px; font-size:12px; color:#333; line-height:1.8;">
+    For general 1031 exchange information, case studies, and NNN market data: → <a href="https://laaa.com/1031-exchange" target="_blank" rel="noopener" style="color:#2c2c2c; font-weight:700; text-decoration:none; border-bottom:2px solid #ffff00; padding-bottom:1px;">laaa.com/1031-exchange</a>
+  </div>
+
+  <div class="agents">
+    <div><span class="name">Morgan Wetmore</span> &nbsp;|&nbsp; Associate Investments &nbsp;|&nbsp; (818) 212-2724 &nbsp;|&nbsp; Morgan.Wetmore@marcusmillichap.com &nbsp;|&nbsp; CA 02209935</div>
+    <div><span class="name">Glen Scher</span> &nbsp;|&nbsp; Senior Managing Director &nbsp;|&nbsp; (818) 212-2808 &nbsp;|&nbsp; Glen.Scher@marcusmillichap.com &nbsp;|&nbsp; CA 01962976</div>
+    <div><span class="name">Filip Niculete</span> &nbsp;|&nbsp; Senior Managing Director &nbsp;|&nbsp; (818) 212-2748 &nbsp;|&nbsp; Filip.Niculete@marcusmillichap.com &nbsp;|&nbsp; CA 01905352</div>
+  </div>
+
+  <div class="footer-bar">
+    Marcus &amp; Millichap &nbsp;|&nbsp; 16830 Ventura Blvd, Suite 100, Encino, CA 91436 &nbsp;|&nbsp; (818) 212-2700
+  </div>
+
+</body>
+</html>

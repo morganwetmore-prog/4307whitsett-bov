@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4307 Whitsett Ave – Broker Opinion of Value</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; font-size: 14px; color: #111; background: #fff; max-width: 860px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    .hero { position: relative; background: #2c2c2c; color: #fff; }
+    .hero img { width: 100%; height: 320px; object-fit: cover; display: block; opacity: 0.55; }
+    .hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 40px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); }
+    .hero-overlay .prepared { font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: #ccc; margin-bottom: 6px; }
+    .hero-overlay h1 { font-size: 30px; font-weight: 700; line-height: 1.15; }
+    .hero-overlay .sub { font-size: 14px; color: #ddd; margin-top: 6px; }
+    .hero-overlay .bov-price { display: inline-block; background: #ffff00; color: #111; font-size: 22px; font-weight: 700; padding: 6px 16px; margin-top: 12px; }
+
+    /* ── BODY WRAPPER ── */
+    .body-wrap { padding: 40px 56px; }
+
+    /* ── SECTION HEADERS ── */
+    .section-header { margin-top: 32px; margin-bottom: 14px; }
+    .section-header h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #2c2c2c; border-bottom: 2px solid #2c2c2c; padding-bottom: 6px; display: inline-block; }
+
+    /* ── KEY METRICS GRID ── */
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid #ddd; margin-bottom: 8px; }
+    .metric-cell { padding: 14px 16px; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+    .metric-cell:nth-child(4n) { border-right: none; }
+    .metric-cell .m-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: #888; margin-bottom: 4px; }
+    .metric-cell .m-val { font-size: 18px; font-weight: 700; }
+    .metric-cell .m-sub { font-size: 10px; color: #888; margin-top: 2px; }
+    .metric-cell.highlight { background: #ffff00; }
+    .metric-cell.highlight .m-label { color: #555; }
+
+    /* ── TWO COLUMN LAYOUT ── */
+    .two-col { display: flex; gap: 24px; margin-top: 14px; }
+    .two-col .col { flex: 1; }
+
+    /* ── PROPERTY FACTS TABLE ── */
+    table.facts { width: 100%; border-collapse: collapse; }
+    table.facts tr { border-bottom: 1px solid #e8e8e8; }
+    table.facts td { padding: 8px 0; font-size: 13px; }
+    table.facts td.label { color: #777; width: 52%; }
+    table.facts td.val { font-weight: 600; text-align: right; }
+
+    /* ── INCOME/EXPENSE TABLE ── */
+    table.financials { width: 100%; border-collapse: collapse; }
+    table.financials td { padding: 8px 6px; border-bottom: 1px solid #e8e8e8; font-size: 13px; }
+    table.financials td.val { text-align: right; font-weight: 600; }
+    table.financials .section-row td { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #888; padding-top: 14px; padding-bottom: 3px; border-bottom: none; }
+    table.financials tr.subtotal td { font-weight: 700; border-top: 2px solid #111; border-bottom: 2px solid #111; background: #f5f5f5; padding: 9px 6px; }
+    table.financials tr.noi-row td { font-weight: 700; background: #ffff00; padding: 9px 6px; font-size: 14px; border-bottom: none; }
+    table.financials tr.indent td:first-child { padding-left: 14px; color: #555; }
+
+    /* ── RENT UPSIDE BOX ── */
+    .upside-box { margin-top: 14px; background: #d6f0c2; border-left: 3px solid #4aaa20; padding: 12px 16px; font-size: 12px; line-height: 1.8; }
+    .upside-box strong { color: #1a5c00; }
+
+    /* ── HIGHLIGHTS LIST ── */
+    .highlights-list { list-style: none; margin-top: 10px; }
+    .highlights-list li { padding: 8px 0; border-bottom: 1px solid #e8e8e8; font-size: 13px; padding-left: 16px; position: relative; line-height: 1.5; }
+    .highlights-list li::before { content: "▶"; position: absolute; left: 0; color: #2c2c2c; font-size: 9px; top: 10px; }
+
+    /* ── COMPS TABLE ── */
+    table.comps { width: 100%; border-collapse: collapse; }
+    table.comps thead tr { background: #2c2c2c; color: #fff; }
+    table.comps thead th { padding: 10px 10px; text-align: right; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    table.comps thead th:first-child { text-align: left; }
+    table.comps tbody tr { border-bottom: 1px solid #e8e8e8; }
+    table.comps tbody tr:hover { background: #fafafa; }
+    table.comps tbody td { padding: 9px 10px; text-align: right; font-size: 12px; }
+    table.comps tbody td:first-child { text-align: left; }
+    table.comps tbody tr.subject-row { background: #ffff00; font-weight: 700; }
+    table.comps tbody tr.subject-row td { font-size: 13px; }
+
+    .comp-note { margin-top: 12px; font-size: 11px; color: #666; line-height: 1.7; font-style: italic; }
+
+    /* ── PRICING RATIONALE ── */
+    .rationale-box { background: #f8f8f8; border: 1px solid #ddd; padding: 20px 24px; margin-top: 14px; }
+    .rationale-box p { font-size: 13px; color: #333; line-height: 1.8; margin-bottom: 10px; }
+    .rationale-box p:last-child { margin-bottom: 0; }
+    .rationale-box strong { color: #111; }
+
+    /* ── TOP NAV BAR ── */
+    .topbar { background: #2c2c2c; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 10; }
+    .topbar .brand { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+    .topbar nav a { color: #ccc; text-decoration: none; font-size: 12px; margin-left: 22px; letter-spacing: 0.5px; transition: color 0.15s; }
+    .topbar nav a:hover { color: #ffff00; }
+
+    /* ── NAV LINKS ── */
+    .page-nav { margin-top: 28px; background: #f0f0f0; padding: 16px 20px; border: 1px solid #ddd; }
+    .page-nav h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #555; margin-bottom: 10px; }
+    .page-nav ul { list-style: none; display: flex; gap: 14px; flex-wrap: wrap; }
+    .page-nav a { color: #2c2c2c; text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 2px solid #ffff00; padding-bottom: 2px; }
+    .page-nav a:hover { background: #ffff00; }
+
+    /* ── FOOTER ── */
+    .agents { margin-top: 28px; padding: 0 56px 16px; border-top: 1px solid #ddd; padding-top: 14px; font-size: 10px; color: #555; line-height: 2.0; }
+    .agents .name { font-weight: 700; font-size: 11px; color: #111; }
+    .footer-bar { background: #2c2c2c; color: #ccc; font-size: 10px; padding: 10px 14px; text-align: center; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <div class="topbar">
+    <div class="brand">LAAA Team &nbsp;|&nbsp; Marcus &amp; Millichap</div>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="BOV.html">BOV</a>
+      <a href="sensitivity.html">Range of Value</a>
+      <a href="net-proceeds.html">Net Proceeds</a>
+      <a href="exchange.html">Exchange Analysis</a>
+      <a href="track-record.html">Track Record</a>
+      <a href="value-of-rep.html">What's Included</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="../Photos/PrimaryPhoto (3).jpg" alt="4307 Whitsett Ave, Studio City">
+    <div class="hero-overlay">
+      <div class="prepared">Broker Opinion of Value — Prepared for Christine Luu</div>
+      <h1>4307 Whitsett Ave<br>Studio City, CA 91604</h1>
+      <div class="sub">16 Units &nbsp;|&nbsp; Built 1985 &nbsp;|&nbsp; Not RSO &nbsp;|&nbsp; 100% Occupied &nbsp;|&nbsp; APN: 2375-002-058</div>
+      <div class="bov-price">BOV: $6,700,000</div>
+    </div>
+  </div>
+
+  <div class="body-wrap">
+
+    <!-- KEY METRICS -->
+    <div class="metrics-grid" style="margin-top:24px;">
+      <div class="metric-cell highlight">
+        <div class="m-label">BOV</div>
+        <div class="m-val">$6,700,000</div>
+        <div class="m-sub">Broker Opinion of Value</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">Price / Unit</div>
+        <div class="m-val">$418,750</div>
+        <div class="m-sub">16 units</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">Price / SF</div>
+        <div class="m-val">$400.72</div>
+        <div class="m-sub">16,720 rentable SF</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">GRM</div>
+        <div class="m-val">12.12×</div>
+        <div class="m-sub">GSR: $552,780</div>
+      </div>
+      <div class="metric-cell highlight">
+        <div class="m-label">Cap Rate (Buyer Basis)</div>
+        <div class="m-val">5.13%</div>
+        <div class="m-sub">Reassessed at purchase</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">Cap Rate (Owner Basis)</div>
+        <div class="m-val">5.49%</div>
+        <div class="m-sub">Your actual tax basis</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">NOI (Buyer Basis)</div>
+        <div class="m-val">$343,858</div>
+        <div class="m-sub">After reassessed taxes</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">NOI (Owner Basis)</div>
+        <div class="m-val">$367,733</div>
+        <div class="m-sub">Your actual return</div>
+      </div>
+    </div>
+
+    <!-- PROPERTY OVERVIEW + INCOME -->
+    <div class="section-header">
+      <h2>Property Overview</h2>
+    </div>
+
+    <div class="two-col">
+
+      <div class="col">
+        <table class="facts">
+          <tr><td class="label">Address</td><td class="val">4307 Whitsett Ave</td></tr>
+          <tr><td class="label">City / Zip</td><td class="val">Studio City, CA 91604</td></tr>
+          <tr><td class="label">APN</td><td class="val">2375-002-058</td></tr>
+          <tr><td class="label">Year Built</td><td class="val">1985</td></tr>
+          <tr><td class="label">Units</td><td class="val">16 (2×1BR/1BA + 14×2BR/2BA)</td></tr>
+          <tr><td class="label">Building SF</td><td class="val">16,720 SF</td></tr>
+          <tr><td class="label">Lot SF</td><td class="val">5,820 SF</td></tr>
+          <tr><td class="label">RSO Status</td><td class="val">Not RSO</td></tr>
+          <tr><td class="label">Occupancy</td><td class="val">100%</td></tr>
+          <tr><td class="label">Existing Loan</td><td class="val">$2,000,000 @ 5.90% (3-yr fixed)</td></tr>
+          <tr><td class="label">Owner</td><td class="val">Christine Luu</td></tr>
+        </table>
+      </div>
+
+      <div class="col">
+        <table class="financials">
+          <tr class="section-row"><td colspan="2">Income (Current — March 2026)</td></tr>
+          <tr><td>Annual Gross Scheduled Rents</td><td class="val">$552,780</td></tr>
+          <tr><td>Laundry Income</td><td class="val">$6,810</td></tr>
+          <tr><td>Gross Potential Income</td><td class="val">$559,590</td></tr>
+          <tr class="indent"><td>Vacancy / Credit Loss (3%)</td><td class="val">($16,788)</td></tr>
+          <tr class="subtotal"><td>Effective Gross Income</td><td class="val">$542,802</td></tr>
+
+          <tr class="section-row"><td colspan="2">Operating Expenses (Buyer Basis @ $6.7M)</td></tr>
+          <tr><td>Real Estate Taxes (1.25% reassessed)</td><td class="val">$83,750</td></tr>
+          <tr><td>Insurance</td><td class="val">$15,882</td></tr>
+          <tr><td>Water / Sewer / Trash</td><td class="val">$22,000</td></tr>
+          <tr><td>Repairs &amp; Maintenance</td><td class="val">$28,800</td></tr>
+          <tr><td>Management (4% EGI)</td><td class="val">$21,712</td></tr>
+          <tr><td>Landscaping</td><td class="val">$4,800</td></tr>
+          <tr><td>Pest Control</td><td class="val">$2,400</td></tr>
+          <tr><td>Advertising</td><td class="val">$2,400</td></tr>
+          <tr><td>G&amp;A</td><td class="val">$4,800</td></tr>
+          <tr><td>Fire / Safety</td><td class="val">$2,400</td></tr>
+          <tr><td>Reserves</td><td class="val">$10,000</td></tr>
+          <tr class="subtotal"><td>Total Operating Expenses</td><td class="val">$198,944</td></tr>
+          <tr class="noi-row"><td>Net Operating Income</td><td class="val">$343,858</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- RENT UPSIDE -->
+    <div class="upside-box">
+      <strong>Rent Upside: $21,120/yr</strong> — 6 units are below market rate. Largest gaps in Units 105 &amp; 106. Not RSO — no rent control. Full market rents achievable at next vacancy. A buyer sees this as built-in upside from day one.
+    </div>
+
+    <!-- INVESTMENT HIGHLIGHTS -->
+    <div class="section-header">
+      <h2>Investment Highlights</h2>
+    </div>
+
+    <ul class="highlights-list">
+      <li><strong>Not RSO — No Rent Control.</strong> Studio City fell outside the City of Los Angeles RSO (Rental Stabilization Ordinance) boundaries. Rents can be raised to market at any vacancy — a premium buyers pay for and sellers benefit from at exit.</li>
+      <li><strong>100% Occupied.</strong> Fully leased as of March 2026. A buyer acquires income from day one with zero lease-up risk.</li>
+      <li><strong>Prime Studio City Location.</strong> Whitsett Ave sits in the heart of Studio City, walkable to Ventura Blvd retail and dining. Strong renter demand driven by proximity to the entertainment industry corridor.</li>
+      <li><strong>Built 1985 — Relatively Modern for the Area.</strong> Newer vintage than the typical 1960s–70s product in the SFV. Lower deferred maintenance profile and more competitive unit amenities.</li>
+      <li><strong>Strong Unit Mix.</strong> 14 of 16 units are 2BR/2BA — the most in-demand configuration in the rental market. Broader renter pool reduces vacancy risk.</li>
+      <li><strong>$21,120/yr Rent Upside.</strong> Six units have measurable below-market rents. No RSO cap. A new owner can capture this upside organically as leases turn — without capital expenditure.</li>
+      <li><strong>Proven Submarket.</strong> The immediate Studio City multifamily market has absorbed recent transactions at $380K–$415K/unit. Subject property is priced in line with this range with a slight premium justified by non-RSO status.</li>
+    </ul>
+
+    <!-- SALE COMPS -->
+    <div class="section-header">
+      <h2>Sale Comparables</h2>
+    </div>
+
+    <table class="comps">
+      <thead>
+        <tr>
+          <th style="text-align:left;">Address</th>
+          <th>City</th>
+          <th>Units</th>
+          <th>Built</th>
+          <th>Asking</th>
+          <th>Sale Price</th>
+          <th>Disc.</th>
+          <th>$/Unit</th>
+          <th>GRM</th>
+          <th>Cap</th>
+          <th>Date</th>
+          <th>DOM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>13028 Valleyheart Dr</td>
+          <td>Studio City</td>
+          <td>18</td>
+          <td>1986</td>
+          <td>$7,995,000</td>
+          <td>$7,450,000</td>
+          <td style="color:#c00;">−7%</td>
+          <td>$413,889</td>
+          <td>12.91×</td>
+          <td>4.94%</td>
+          <td>Oct 2024</td>
+          <td>79</td>
+        </tr>
+        <tr>
+          <td>4180 Arch Dr</td>
+          <td>Studio City</td>
+          <td>36</td>
+          <td>1990</td>
+          <td>$12,995,000</td>
+          <td>$12,000,000</td>
+          <td style="color:#c00;">−8%</td>
+          <td>$333,333</td>
+          <td>12.07×</td>
+          <td>5.39%</td>
+          <td>Dec 2024</td>
+          <td>45</td>
+        </tr>
+        <tr>
+          <td>13444 Moorpark St</td>
+          <td>Sherman Oaks</td>
+          <td>16</td>
+          <td>1986</td>
+          <td>$4,999,000</td>
+          <td>$4,950,000</td>
+          <td style="color:#c00;">−1%</td>
+          <td>$309,375</td>
+          <td>11.18×</td>
+          <td>5.76%</td>
+          <td>Feb 2025</td>
+          <td>161</td>
+        </tr>
+        <tr class="subject-row">
+          <td>4307 Whitsett Ave ★</td>
+          <td>Studio City</td>
+          <td>16</td>
+          <td>1985</td>
+          <td>BOV</td>
+          <td>$6,700,000</td>
+          <td>—</td>
+          <td>$418,750</td>
+          <td>12.12×</td>
+          <td>5.13%</td>
+          <td>BOV</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="comp-note">
+      DOM = days on market (list to pending/contract). Asking prices (CoStar verified): Valleyheart asked $7,995,000 → sold $7,450,000 (−7%); Arch Dr asked $12,995,000 → sold $12,000,000 (−8%); Moorpark asked $4,999,000 → sold $4,950,000 (−1%). Valleyheart is the anchor comparable — same Studio City submarket, same vintage, similar unit count. Subject is priced at $418,750/unit, a modest premium to Valleyheart's $413,889/unit — supported by non-RSO status, 100% occupancy, and no rent control exposure. Moorpark's 161 DOM is a direct result of a Sherman Oaks location, RSO exposure, and initial over-pricing — a cautionary data point.
+    </div>
+
+    <!-- PRICING RANGE / SENSITIVITY -->
+    <div class="section-header">
+      <h2>Pricing Range at a Glance</h2>
+    </div>
+
+    <table class="comps" style="font-size:13px;">
+      <thead>
+        <tr>
+          <th style="text-align:left;">Sale Price</th>
+          <th>Price / Unit</th>
+          <th>Price / SF</th>
+          <th>GRM</th>
+          <th>Cap Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>$6,200,000</td><td>$387,500</td><td>$370.81</td><td>11.22×</td><td>5.67%</td></tr>
+        <tr><td>$6,300,000</td><td>$393,750</td><td>$376.79</td><td>11.40×</td><td>5.55%</td></tr>
+        <tr><td>$6,400,000</td><td>$400,000</td><td>$382.78</td><td>11.58×</td><td>5.44%</td></tr>
+        <tr><td>$6,500,000</td><td>$406,250</td><td>$388.76</td><td>11.76×</td><td>5.34%</td></tr>
+        <tr><td>$6,600,000</td><td>$412,500</td><td>$394.74</td><td>11.94×</td><td>5.23%</td></tr>
+        <tr style="background:#ffff00; font-weight:700;"><td>$6,700,000 ★ BOV</td><td>$418,750</td><td>$400.72</td><td>12.12×</td><td>5.13%</td></tr>
+        <tr><td>$6,800,000</td><td>$425,000</td><td>$406.70</td><td>12.30×</td><td>5.03%</td></tr>
+        <tr><td>$6,900,000</td><td>$431,250</td><td>$412.68</td><td>12.48×</td><td>4.94%</td></tr>
+        <tr><td>$7,000,000</td><td>$437,500</td><td>$418.66</td><td>12.66×</td><td>4.85%</td></tr>
+        <tr><td>$7,100,000</td><td>$443,750</td><td>$424.64</td><td>12.84×</td><td>4.76%</td></tr>
+        <tr><td>$7,200,000</td><td>$450,000</td><td>$430.62</td><td>13.03×</td><td>4.67%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px; color:#888; margin-top:6px; font-style:italic;">Property tax (1.25%) and insurance scale with price at each level. See sensitivity.html for full methodology.</p>
+
+    <!-- PRICING RATIONALE -->
+    <div class="section-header">
+      <h2>Pricing Rationale</h2>
+    </div>
+
+    <div class="rationale-box">
+      <p><strong>Why $6,700,000?</strong> This price reflects the current market for quality, non-RSO multifamily in Studio City. Valleyheart Dr — the most comparable recent transaction in the same submarket — traded at $413,889/unit in October 2024. At $418,750/unit, 4307 Whitsett commands a slight premium, supported by its non-RSO status, 100% occupancy, and $21,120/yr in identifiable rent upside across 6 under-market units.</p>
+      <p><strong>The 5.13% buyer cap rate is market-appropriate.</strong> It accounts for fully reassessed property taxes at purchase (1.25% of price — the reality every buyer underwrites). At 5.13%, this property pencils for the most active buyer profile in today's market: the 1031 exchange buyer deploying equity from a sale of a lower-yielding asset or a highly appreciated property.</p>
+      <p><strong>Non-RSO is the differentiator.</strong> Studio City's non-RSO designation allows a new owner to push rents to market at every turn — no rent control ceiling, no annual limit. This is the feature buyers are paying up for across the SFV. Properties without RSO exposure consistently trade at a premium to the broader market, and 4307 Whitsett is a direct beneficiary of that dynamic.</p>
+    </div>
+    <p style="margin-top:12px; font-size:12px;">→ <a href="https://laaa.com/insights/selling-guide" target="_blank" rel="noopener" style="color:#2c2c2c; font-weight:700; text-decoration:none; border-bottom:2px solid #ffff00; padding-bottom:1px;">How we value and sell apartment buildings — laaa.com/insights/selling-guide</a></p>
+
+    <!-- PAGE NAVIGATION -->
+    <div class="page-nav">
+      <h4>Additional Analysis</h4>
+      <ul>
+        <li><a href="sensitivity.html">→ Range of Value (Cap Rate Sensitivity)</a></li>
+        <li><a href="net-proceeds.html">→ Estimated Net Proceeds</a></li>
+        <li><a href="exchange.html">→ 1031 Exchange Analysis</a></li>
+        <li><a href="track-record.html">→ LAAA Team Track Record</a></li>
+        <li><a href="value-of-rep.html">→ What Your Listing Includes</a></li>
+      </ul>
+    </div>
+
+  </div><!-- /body-wrap -->
+
+  <div class="agents">
+    <div><span class="name">Morgan Wetmore</span> &nbsp;|&nbsp; Associate Investments &nbsp;|&nbsp; (818) 212-2724 &nbsp;|&nbsp; Morgan.Wetmore@marcusmillichap.com &nbsp;|&nbsp; CA 02209935</div>
+    <div><span class="name">Glen Scher</span> &nbsp;|&nbsp; Senior Managing Director &nbsp;|&nbsp; (818) 212-2808 &nbsp;|&nbsp; Glen.Scher@marcusmillichap.com &nbsp;|&nbsp; CA 01962976</div>
+    <div><span class="name">Filip Niculete</span> &nbsp;|&nbsp; Senior Managing Director &nbsp;|&nbsp; (818) 212-2748 &nbsp;|&nbsp; Filip.Niculete@marcusmillichap.com &nbsp;|&nbsp; CA 01905352</div>
+  </div>
+
+  <div class="footer-bar">
+    Marcus &amp; Millichap &nbsp;|&nbsp; 16830 Ventura Blvd, Suite 100, Encino, CA 91436 &nbsp;|&nbsp; (818) 212-2700
+  </div>
+
+</body>
+</html>
